@@ -9,13 +9,13 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @param $name string
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/hello/{name}", name="hello")
      */
-    public function indexAction(Request $request)
+    public function testAction($name)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
+        return $this->render('default/hello.html.twig', array('name' => $name));
     }
 }

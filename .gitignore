@@ -1,4 +1,7 @@
+.idea/
 /web/bundles/
+/web/css/compiled/
+/web/js/compiled/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
