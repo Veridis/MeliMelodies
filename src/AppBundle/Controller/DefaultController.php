@@ -16,6 +16,6 @@ class DefaultController extends Controller
      */
     public function testAction($name)
     {
-        return $this->render('default/hello.html.twig', array('name' => $name));
+        return $this->render('app/default/hello.html.twig', array('name' => $name));
     }
 }
