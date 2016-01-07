@@ -1,5 +1,13 @@
 {% extends 'app/layout.html.twig' %}
 
 {% block body %}
-
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <h2>Contactez-nous</h2>
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

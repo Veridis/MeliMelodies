@@ -5,6 +5,9 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
+use AppBundle\Form\ContactType;
 
 class AppController extends Controller
 {
@@ -34,11 +37,23 @@ class AppController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/contact", name="contact")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('app/app/contact.html.twig');
+        $form = $this->createForm(new ContactType(), array(
+            'action' => $this->generateUrl('contact'),
+            'method' => 'POST,'
+        ));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->getData());die;
+        }
+
+        return $this->render('app/app/contact.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**

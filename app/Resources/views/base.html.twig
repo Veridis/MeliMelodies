@@ -17,7 +17,9 @@
         {% block menu %}
             {% include 'app/menu.html.twig' %}
         {% endblock %}
-        {% block body %}{% endblock %}
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}
             {% javascripts
                 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
