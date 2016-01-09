@@ -17,6 +17,8 @@
         {% block menu %}
             {% include 'app/menu.html.twig' %}
         {% endblock %}
+        {% include 'app/flash.html.twig' %}
+
         <div class="container-fluid">
             {% block body %}{% endblock %}
         </div>

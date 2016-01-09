@@ -2,12 +2,15 @@
 
 namespace AppBundle\Controller;
 
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use AppBundle\Entity\Contact;
 use AppBundle\Form\ContactType;
+
 
 class AppController extends Controller
 {
@@ -41,14 +44,20 @@ class AppController extends Controller
      */
     public function contactAction(Request $request)
     {
-        $form = $this->createForm(new ContactType(), array(
+        $form = $this->createForm(new ContactType(), new Contact(), array(
             'action' => $this->generateUrl('contact'),
-            'method' => 'POST,'
+            'method' => 'POST'
         ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($form->getData());die;
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
+
+            $this->get('meli.flasher')->flashSuccess('Votre demande a bien été envoyée. Elle sera traitée sous peu.');
+
+            return $this->redirectToRoute('contact');
         }
 
         return $this->render('app/app/contact.html.twig', array(

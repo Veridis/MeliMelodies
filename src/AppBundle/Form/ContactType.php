@@ -19,15 +19,6 @@ class ContactType extends AbstractType
                     'placeholder' => 'Pseudo',
                     'maxlength' => 40,
                 ),
-                'constraints' => array(
-                    new Constraints\NotBlank(array('message' => 'Ce champ ne peut être vide')),
-                    new Constraints\Length(array(
-                        'min' => 2,
-                        'max' => 40,
-                        'minMessage' => 'Le pseudo ne peut pas faire moins de 2 charactères',
-                        'maxMessage' => 'Le pseudo ne peut pas faire plus de 40 charactères'
-                    )),
-                ),
             ))
             ->add('email', 'email', array(
                 'label' => 'E-mail',
@@ -35,37 +26,17 @@ class ContactType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'E-mail',
                 ),
-                'constraints' => array(
-                    new Constraints\NotBlank(array('message' => 'Ce champ ne peut être vide')),
-                    new Constraints\Email(array('message' => 'L\'adresse e-mail n\'est pas valide'))
-                ),
             ))
             ->add('subject', 'text', array(
                 'label' => 'Sujet',
                 'attr' => array(
                     'placeholder' => 'Sujet',
                 ),
-                'constraints' => array(
-                    new Constraints\NotBlank(array('message' => 'Ce champ ne peut être vide')),
-                    new Constraints\Length(array(
-                        'min' => 2,
-                        'max' => 140,
-                        'minMessage' => 'Le sujet ne peut pas faire moins de 2 charactères',
-                        'maxMessage' => 'Le sujet ne peut pas faire plus de 140 charactères'
-                    )),
-                ),
             ))
             ->add('message', 'textarea', array(
                 'label' => 'Message',
                 'attr' => array(
                     'placeholder' => 'Message',
-                ),
-                'constraints' => array(
-                    new Constraints\NotBlank(array('message' => 'Ce champ ne peut être vide')),
-                    new Constraints\Length(array(
-                        'min' => 5,
-                        'minMessage' => 'Le message ne peut pas faire moins de 5 charactères',
-                    )),
                 ),
             ))
             ->add('attachment', 'file', array(
@@ -99,7 +70,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => null,
+            'data_class' => 'AppBundle\Entity\Contact',
         ));
     }
 }

@@ -1,0 +1,17 @@
+{% for type, messages in app.session.flashbag.all() %}
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            {% for message in messages %}
+                <div class="alert alert-{{ type }} alert-dismissable" id="flash-{{ type }}-{{ loop.index }}">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ message }}
+                </div>
+                <script type="text/javascript">
+                    window.setTimeout(function () {
+                        $('#flash-{{ type }}-{{ loop.index }}').alert('close')}, 7000
+                    );
+                </script>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
