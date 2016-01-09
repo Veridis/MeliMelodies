@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'madmoiselle-camille';
+    src: url('../fonts/Mademoiselle_Camille_L.ttf'); /*URL to font*/
+}
+
+.navbar {
+    font-family: madmoiselle-camille;
+    font-size: 40px;
+    min-height: 40px;
+    line-height: 0px;
+}
+
+.navbar-brand {
+    text-transform: none;
+    font-size:50px;
+}
