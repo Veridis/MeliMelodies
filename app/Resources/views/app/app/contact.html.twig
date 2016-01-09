@@ -5,9 +5,48 @@
         <div class="col-md-offset-2 col-md-8">
             <h2>Contactez-nous</h2>
             {{ form_start(form) }}
-                {{ form_widget(form) }}
+                {{ form_row(form.nickname) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.subject) }}
+                {{ form_row(form.message) }}
+
+                {{ form_label(form.files) }}
+                {{ form_errors(form.files) }}
+
+                <ul id="file-fields-list" data-prototype="{{ form_widget(form.files.vars.prototype)|e }}">
+                    {{ form_widget(form.files) }}
+                </ul>
+                <a href="#" id="addCollection">Ajouter un autre fichier</a>
+
                 <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
             {{ form_end(form) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var fileCount = '{{ form.files|length }}';
+
+        jQuery(document).ready(function() {
+            jQuery('#addCollection').click(function(e) {
+                e.preventDefault();
+
+                var fileList = jQuery('#file-fields-list');
+
+                // grab the prototype template
+                var newWidget = fileList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, fileCount);
+                fileCount++;
+
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(fileList);
+            });
+        })
+    </script>
 {% endblock %}

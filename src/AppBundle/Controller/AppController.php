@@ -52,6 +52,9 @@ class AppController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            foreach ($form->getData()->getFiles() as $file) {
+                $file->upload();
+            }
             $em->persist($form->getData());
             $em->flush();
 

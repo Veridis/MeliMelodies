@@ -5,7 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints;
+
+use AppBundle\Form\FileType;
 
 class ContactType extends AbstractType
 {
@@ -39,29 +40,11 @@ class ContactType extends AbstractType
                     'placeholder' => 'Message',
                 ),
             ))
-            ->add('attachment', 'file', array(
+            ->add('files', 'collection', array(
+                'type' => new FileType(),
                 'label' => 'Pièces-jointes',
                 'required' => false,
-                'multiple' => true,
-                'mapped' => false,
-                'constraints' => array(
-                    new Constraints\All(array(
-                        'constraints' => array(
-                            new Constraints\File(array(
-                                'maxSize' => '2M',
-                                'mimeTypes' => array(
-                                    // @TODO : définir avec Carolyne les mimeTypes
-                                    'image/gif',
-                                    'image/jpeg',
-                                    'image/png',
-                                    'application/pdf',
-                                ),
-                                'maxSizeMessage' => 'Le fichier est trop large ({{ size }} {{ suffix }}). Le poids max autorisé est de {{ limit }} {{ suffix }}.',
-                                'mimeTypesMessage' => 'Le format {{ type }} n\'est pas accepté. Seuls les formats {{ types }} sont acceptés.',
-                            )),
-                        )
-                    )),
-                ),
+                'allow_add' => true,
             ))
         ;
     }

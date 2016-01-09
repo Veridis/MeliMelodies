@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Contact
@@ -82,9 +83,15 @@ class Contact
      */
     private $message;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\File", cascade={"persist"})
+     */
+    private $files;
+
     public function __construct()
     {
         $this->date = new \DateTime('now');
+        $this->files = new ArrayCollection();
     }
 
     /**
@@ -192,5 +199,62 @@ class Contact
     {
         return $this->message;
     }
-}
 
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Contact
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Add file
+     *
+     * @param \AppBundle\Entity\File $file
+     *
+     * @return Contact
+     */
+    public function addFile(\AppBundle\Entity\File $file)
+    {
+        $this->files[] = $file;
+
+        return $this;
+    }
+
+    /**
+     * Remove file
+     *
+     * @param \AppBundle\Entity\File $file
+     */
+    public function removeFile(\AppBundle\Entity\File $file)
+    {
+        $this->files->removeElement($file);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+}
