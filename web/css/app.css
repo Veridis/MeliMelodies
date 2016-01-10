@@ -3,20 +3,34 @@
     font-family: 'madmoiselle-camille';
     src: url('../fonts/Mademoiselle_Camille_L.ttf');
 }
+@font-face {
+    /* TODO : find a new font */
+    font-family: 'merveille';
+    src: url('../fonts/Merveille.ttf');
+}
 
+
+/*** NAVBAR FIXES ***/
 .navbar {
-    font-family: madmoiselle-camille, arial, sans-serif;
-    font-size: 40px;
-    min-height: 40px;
-    line-height: 0px;
+    /* Changing the default navbar font */
+    font-family: merveille, 'News Cycle', 'Arial Narrow Bold', sans-serif;
 }
-
+.navbar .navbar-nav {
+    /* Changing the navbar disposition to center */
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+.navbar .navbar-collapse {
+    /* Changing the navbar disposition to center */
+    text-align: center;
+}
 .navbar-brand {
+    /* fix navbar brad Uppercase */
     text-transform: none;
-    font-size:50px;
 }
-
 .navbar input {
+    /* Change the font-family of navbar's input to default */
     font-family: 'News Cycle', 'Arial Narrow Bold', sans-serif;
 }
 
