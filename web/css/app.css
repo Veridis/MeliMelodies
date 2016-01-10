@@ -1,10 +1,11 @@
 @font-face {
+    /* TODO : find a new font */
     font-family: 'madmoiselle-camille';
-    src: url('../fonts/Mademoiselle_Camille_L.ttf'); /*URL to font*/
+    src: url('../fonts/Mademoiselle_Camille_L.ttf');
 }
 
 .navbar {
-    font-family: madmoiselle-camille;
+    font-family: madmoiselle-camille, arial, sans-serif;
     font-size: 40px;
     min-height: 40px;
     line-height: 0px;
@@ -13,6 +14,10 @@
 .navbar-brand {
     text-transform: none;
     font-size:50px;
+}
+
+.navbar input {
+    font-family: 'News Cycle', 'Arial Narrow Bold', sans-serif;
 }
 
 input[type="file"] {
