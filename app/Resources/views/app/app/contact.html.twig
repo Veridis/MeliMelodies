@@ -14,7 +14,7 @@
                 <a href="#" id="addCollection" class="text-success" data-toggle="tooltip" data-placement="right" title="Ajouter une PJ"><span class="glyphicon glyphicon-plus"></span></a>
                 {{ form_errors(form.files) }}
 
-                <ul class="list-unstyled" id="file-fields-list" data-prototype="{% filter escape %}{% include 'Twig/file-collection-prototype.html.twig' with {'form': form.files.vars.prototype } %}{% endfilter %}">
+                <ul class="list-unstyled" id="file-fields-list" data-prototype="{% filter escape %}{% include 'form/file-collection-prototype.html.twig' with {'form': form.files.vars.prototype } %}{% endfilter %}">
                     {{ form_widget(form.files) }}
                 </ul>
                 <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
