@@ -17,7 +17,7 @@ class AppController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/accueil", name="home")
+     * @Route("/", name="home")
      * @Method("GET")
      */
     public function homeAction()
@@ -82,8 +82,8 @@ class AppController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/album", name="album")
-     * @Method("GET")
+     * @Route("/multimedia", name="multimedia")
+     * @Method("GET")s
      */
     public function albumAction()
     {

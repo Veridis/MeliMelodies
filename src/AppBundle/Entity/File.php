@@ -142,9 +142,9 @@ class File
             return;
         }
 
-        $this->name = sprintf('%s_%s', uniqid('',true), $this->getFile()->getClientOriginalName());
+        $this->name = $this->slugify($this->getFile()->getClientOriginalName());
         $this->path = $this->getRealPath();
-        //@TODO : slugify and check for unicity
+
         $this->getFile()->move(
             $this->getUploadRootDir(),
             $this->name
@@ -180,6 +180,42 @@ class File
     protected function getUploadDir()
     {
         return self::UPLOAD_DIR;
+    }
+
+    /**
+     * Slugify the filename and check for unicity
+     *
+     * @param $originalName
+     * @return string
+     */
+    protected function slugify($originalName)
+    {
+        if (empty($originalName)) {
+            return uniqid('', true);
+        }
+
+        $fileName = explode('.', $originalName);
+        $extension = array_splice($fileName, -1, 1);
+        $fileName = implode('.', $fileName);
+        $extension = implode('.', $extension);
+
+        //Sanitize filename
+        $fileName = preg_replace('~[^\\pL\d]+~u', '-', $fileName);
+        $fileName = trim($fileName, '-');
+        $fileName = iconv('utf-8', 'us-ascii//TRANSLIT', $fileName);
+        $fileName = strtolower($fileName);
+        $fileName = preg_replace('~[^-\w]+~', '', $fileName);
+
+        //Check for unicity
+        $i = 1;
+        $name = sprintf('%s.%s', $fileName, $extension);
+        while(file_exists(sprintf('%s/%s',self::UPLOAD_DIR, $name))) {
+            $name = sprintf('%s.%s', $fileName, $extension);
+            $name = sprintf('%d_%s', $i, $name);
+            $i++;
+        }
+
+        return $name;
     }
 }
 

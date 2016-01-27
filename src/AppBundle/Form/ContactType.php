@@ -38,6 +38,7 @@ class ContactType extends AbstractType
                 'label' => 'Message',
                 'attr' => array(
                     'placeholder' => 'Message',
+                    'rows' => '10',
                 ),
             ))
             ->add('files', 'collection', array(
