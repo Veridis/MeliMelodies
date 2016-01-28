@@ -1,5 +1,50 @@
 {% extends 'app/layout.html.twig' %}
 
 {% block body %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <h2>Contactez-nous</h2>
+            {{ form_start(form) }}
+                {{ form_row(form.nickname) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.subject) }}
+                {{ form_row(form.message) }}
 
+                {{ form_label(form.files) }}
+                <a href="#" id="addCollection" class="text-success" data-toggle="tooltip" data-placement="right" title="Ajouter une PJ"><span class="glyphicon glyphicon-plus"></span></a>
+                {{ form_errors(form.files) }}
+
+                <ul class="list-unstyled" id="file-fields-list" data-prototype="{% filter escape %}{% include 'form/file-collection-prototype.html.twig' with {'form': form.files.vars.prototype } %}{% endfilter %}">
+                    {{ form_widget(form.files) }}
+                </ul>
+                <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var fileCount = '{{ form.files|length }}';
+        jQuery(document).ready(function() {
+            jQuery('#addCollection').click(function(e) {
+                e.preventDefault();
+
+                var fileList = jQuery('#file-fields-list');
+
+                var newWidget = fileList.attr('data-prototype');
+                newWidget = newWidget.replace(/__name__/g, fileCount);
+                fileCount++;
+
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(fileList);
+            });
+            jQuery('#file-fields-list').on('click', '.removeColllection', function(e) {
+                e.preventDefault();
+                jQuery('#' + jQuery(this).data('remove')).remove();
+                //Do not fileCount--; to avoid conflicts
+            });
+        })
+    </script>
 {% endblock %}

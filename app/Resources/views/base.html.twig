@@ -5,8 +5,9 @@
         <title>{% block title %}Méli-Mélodies{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets
-                'css/*'
-                filter='cssrewrite' output='css/compiled/app.css' %}
+                'css/bootstrap.journal.min.css'
+                'css/app.css'
+                filter='cssrewrite' output='css/compiled/appc.css' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
 
@@ -17,12 +18,16 @@
         {% block menu %}
             {% include 'app/menu.html.twig' %}
         {% endblock %}
-        {% block body %}{% endblock %}
+        {% include 'app/flash.html.twig' %}
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}
             {% javascripts
                 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
                 'js/*'
-                output='js/compiled/app.js' %}
+                output='js/compiled/appc.js' %}
             <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}

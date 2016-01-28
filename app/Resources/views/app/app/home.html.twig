@@ -1,59 +1,50 @@
 {% extends 'app/layout.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="jumbotron text-center col-md-offset-2 col-md-8">
-                <h1>Bonjour à tous !</h1>
+    <div class="row">
+        <div class="jumbotron text-center col-md-8">
+            <h1>Bonjour à tous !</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam purus,
+                interdum quis sem et, placerat consequat nunc. Ut maximus nec massa tincidunt congue.
+                Morbi ut diam sed diam fringilla placerat. Donec ut gravida arcu. Praesent nec diam eros.
+                Donec ac ullamcorper mauris, id pulvinar mauris.
+            </p>
+            <p>
+                Duis faucibus aliquam tortor eu pharetra.
+                Phasellus scelerisque risus eget tortor placerat, quis vehicula augue maximus.
+                Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum pulvinar pretium enim a blandit.
+                Nulla ac lacus vitae sem ultrices volutpat. Etiam pellentesque in odio id lobortis. Duis ultricies metus nulla,
+                non fringilla elit scelerisque ac. Curabitur nec euismod ante, sit amet maximus massa.
+            </p>
+        </div>
+        <div class="text-center col-md-4">
+            <h3>News</h3>
+            <div class="well">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam purus,
-                    interdum quis sem et, placerat consequat nunc. Ut maximus nec massa tincidunt congue.
-                    Morbi ut diam sed diam fringilla placerat. Donec ut gravida arcu. Praesent nec diam eros.
-                    Donec ac ullamcorper mauris, id pulvinar mauris.
+                    interdum quis sem et, placerat consequat nunc...
                 </p>
                 <p>
-                    Duis faucibus aliquam tortor eu pharetra.
-                    Phasellus scelerisque risus eget tortor placerat, quis vehicula augue maximus.
-                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum pulvinar pretium enim a blandit.
-                    Nulla ac lacus vitae sem ultrices volutpat. Etiam pellentesque in odio id lobortis. Duis ultricies metus nulla,
-                    non fringilla elit scelerisque ac. Curabitur nec euismod ante, sit amet maximus massa.
+                    <button type="button" class="btn btn-primary">Lire la suite</button>
                 </p>
             </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <h2>News</h2>
-                <div class="well">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam purus,
-                        interdum quis sem et, placerat consequat nunc...
-                    </p>
-                    <p>
-                        <button type="button" class="btn btn-primary">Lire la suite</button>
-                    </p>
-                </div>
+            <h3>Dernier album</h3>
+            <div class="well">
+                <img src="{{ asset('uploads/cookie.png') }}" alt="cookie" style="width: 100px; height: 100px;"/>
+                <p>
+                    <button type="button" class="btn btn-primary">Consulter l'album</button>
+                </p>
             </div>
-            <div class="col-md-4 text-center">
-                <h2>Dernier album</h2>
-                <div class="well">
-                    <img src="{{ asset('uploads/cookie.png') }}" alt="cookie" style="width: 100px; height: 100px;"/>
-                    <p>
-                        <button type="button" class="btn btn-primary">Consulter l'album</button>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <h2>Article de presse</h2>
-                <div class="well">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam purus,
-                        interdum quis sem et, placerat consequat nunc...
-                    </p>
-                    <p>
-                        <button type="button" class="btn btn-primary">Lire l'article</button>
-                    </p>
-                </div>
+            <h3>Article de presse</h3>
+            <div class="well">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam purus,
+                    interdum quis sem et, placerat consequat nunc...
+                </p>
+                <p>
+                    <button type="button" class="btn btn-primary">Lire l'article</button>
+                </p>
             </div>
         </div>
     </div>

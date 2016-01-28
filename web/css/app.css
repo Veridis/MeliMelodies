@@ -1,0 +1,31 @@
+/*
+@font-face {
+    font-family: 'madmoiselle-camille';
+    src: url('../fonts/Mademoiselle_Camille_L.ttf');
+}
+@font-face {
+    font-family: 'merveille';
+    src: url('../fonts/Merveille.ttf');
+}
+*/
+
+
+/*** NAVBAR FIXES ***/
+.navbar .navbar-nav {
+    /* Changing the navbar disposition to center */
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+.navbar .navbar-collapse {
+    /* Changing the navbar disposition to center */
+    text-align: center;
+}
+.navbar-brand {
+    /* fix navbar brand Uppercase */
+    text-transform: none;
+}
+
+input[type="file"] {
+    display: inline-block;
+}

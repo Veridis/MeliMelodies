@@ -1,8 +1,8 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#meli-navbar-collapse">
                 <span class="sr-only">Afficher le Menu</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -11,22 +11,22 @@
             <a class="navbar-brand" href="{{ path('home') }}">Méli-Mélodies</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="meli-navbar-collapse">
             {% set route = app.request.attributes.get('_route') %}
             <ul class="nav navbar-nav">
                 <li {% if 'home' == route %}class="active"{% endif %}><a href="{{ path('home') }}">Accueil</a></li>
                 <li {% if 'presentation' == route %}class="active"{% endif %}><a href="{{ path('presentation') }}">Présentation</a></li>
                 <li {% if 'contact' == route %}class="active"{% endif %}><a href="{{ path('contact') }}">Contact</a></li>
                 <li {% if 'press' == route %}class="active"{% endif %}><a href="{{ path('press') }}">Presse</a></li>
-                <li {% if 'album' == route %}class="active"{% endif %}><a href="{{ path('album') }}">Album</a></li>
+                <li {% if 'multimedia' == route %}class="active"{% endif %}><a href="{{ path('multimedia') }}">Multimedia</a></li>
                 <li {% if 'guestbook' == route %}class="active"{% endif %}><a href="{{ path('guestbook') }}">Livre d'Or</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form form-group-sm" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Rechercher...">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            <button class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-search"></span></button>
                         </span>
                     </div>
                 </form>

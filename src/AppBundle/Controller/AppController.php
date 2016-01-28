@@ -2,16 +2,22 @@
 
 namespace AppBundle\Controller;
 
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
+use AppBundle\Entity\Contact;
+use AppBundle\Form\ContactType;
+
 
 class AppController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/accueil", name="home")
+     * @Route("/", name="home")
      * @Method("GET")
      */
     public function homeAction()
@@ -34,11 +40,32 @@ class AppController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/contact", name="contact")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('app/app/contact.html.twig');
+        $form = $this->createForm(new ContactType(), new Contact(), array(
+            'action' => $this->generateUrl('contact'),
+            'method' => 'POST'
+        ));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            foreach ($form->getData()->getFiles() as $file) {
+                $file->upload();
+            }
+            $em->persist($form->getData());
+            $em->flush();
+
+            $this->get('meli.flasher')->flashSuccess('Votre demande a bien été envoyée. Elle sera traitée sous peu.');
+
+            return $this->redirectToRoute('contact');
+        }
+
+        return $this->render('app/app/contact.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**
@@ -55,8 +82,8 @@ class AppController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/album", name="album")
-     * @Method("GET")
+     * @Route("/multimedia", name="multimedia")
+     * @Method("GET")s
      */
     public function albumAction()
     {
