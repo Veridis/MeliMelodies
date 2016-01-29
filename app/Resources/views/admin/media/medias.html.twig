@@ -1,0 +1,37 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    <h1>Galleries multimédia</h1>
+    <a href="{{ path('admin-medias-add') }}" title="Ajouter une gallerie audio, video ou d'image" class="btn btn-success">Ajouter une gallerie</a>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Titre</th>
+            <th>Categorie</th>
+            <th>Date de création</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for media in medias %}
+            <tr>
+                <td><strong>#{{ media.id }}</strong></td>
+                <td>{{ media.title }}</td>
+                <td><span class="label label-{{ media.getCategoryColor() }}">{{ media.category }}</span></td>
+                <td>{{ media.createdDate|date('d-m-Y') }}</td>
+                <td>
+                    <a href="{{ path('admin-medias-gallery', {'id' : media.id}) }}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="Voir la gallerie" ><span class="glyphicon glyphicon-th"></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center"><em>Aucune gallerie à lister</em></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(medias) }}
+    </div>
+{% endblock %}
