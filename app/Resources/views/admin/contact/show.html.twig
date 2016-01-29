@@ -1,0 +1,26 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <h3 class="text-center">{{ contact.nickname }} a envoyé ce message le {{ contact.date|date('d-m-Y') }}</h3>
+        <hr />
+        <div class="col-md-offset-2 col-md-6">
+            <div class="well">
+                <p class="lead"><em>{{ contact.message }}</em></p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <strong>Sujet : </strong>{{ contact.subject }}<br>
+            <strong>{{ contact.email }}</strong><br>
+            {% if contact.files is not empty %}
+                <strong>Pièces jointes : </strong>
+                <ul>
+                    {% for file in contact.files %}
+                        <li><a href="{{ asset(file.path) }}" title="{{ file.name }}" target="_blank">{{ file.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

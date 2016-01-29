@@ -9,15 +9,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class SecurityController extends Controller
 {
     /**
-     * TODO : http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-     *
-     * @Route("/login", name="login_route")
+     * @Route("/administration/login", name="login_route")
      */
     public function loginAction(Request $request)
     {
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+
         return $this->render(
             'admin/security/login.html.twig',
             array(

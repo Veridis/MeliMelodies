@@ -19,6 +19,14 @@ security:
         main:
             anonymous: ~
             form_login:
-                login_path: /login
+                login_path: /administration/login
                 check_path: /login_check
+                default_target_path: /administration
+            logout:
+                path:   /administration/logout
+                target: /administration/login
+
+    access_control:
+        - { path: ^/administration/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/administration, roles: ROLE_ADMIN }
 

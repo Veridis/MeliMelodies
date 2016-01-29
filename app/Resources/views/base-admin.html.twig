@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Méli-Mélodies - Admin{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets
+        'css/bootstrap.min.css'
+        'css/app.css'
+        filter='cssrewrite' output='css/compiled/appc.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block menu %}
+    {% include 'admin/menu.html.twig' %}
+{% endblock %}
+{% include 'app/flash.html.twig' %}
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}
+    {% javascripts
+    'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
+    'js/*'
+    output='js/compiled/appc.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
+</html>

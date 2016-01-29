@@ -1,0 +1,24 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#meli-navbar-collapse">
+                <span class="sr-only">Afficher le Menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('admin') }}">Méli-Mélodies</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="meli-navbar-collapse">
+            {% set route = app.request.attributes.get('_route') %}
+            <ul class="nav navbar-nav">
+                <li {% if 'admin-contacts' == route %}class="active"{% endif %}><a href="{{ path('admin-contacts') }}">Contacts</a></li>
+            </ul>
+            <p class="navbar-text navbar-right">
+                <strong>{{ app.user.username }}</strong> | <a href="{{ path('logout') }}" title="Déconnexion" class="navbar-link">Déconnexion</a>
+            </p>
+        </div>
+    </div>
+</nav>
