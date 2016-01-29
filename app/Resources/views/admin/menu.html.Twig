@@ -15,6 +15,7 @@
             {% set route = app.request.attributes.get('_route') %}
             <ul class="nav navbar-nav">
                 <li {% if 'admin-contacts' == route %}class="active"{% endif %}><a href="{{ path('admin-contacts') }}">Contacts</a></li>
+                <li><a href="">...</a></li>
             </ul>
             <p class="navbar-text navbar-right">
                 <strong>{{ app.user.username }}</strong> | <a href="{{ path('logout') }}" title="Déconnexion" class="navbar-link">Déconnexion</a>

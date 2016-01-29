@@ -3,6 +3,7 @@
 namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -14,13 +15,16 @@ class ContactController extends Controller
      * @Route("/administration/contacts", name="admin-contacts")
      * @Method({"GET"})
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $contacts = $em->getRepository('AppBundle:Contact')->findAllOrdered();
 
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($contacts, $request->query->getInt('page', 1), 10);
+
         return $this->render('admin/contact/contacts.html.twig', array(
-            'contacts' => $contacts,
+            'contacts' => $pagination,
         ));
     }
 
