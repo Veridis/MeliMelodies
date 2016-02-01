@@ -71,7 +71,7 @@ class AppController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/press", name="press")
+     * @Route("/presse", name="press")
      * @Method("GET")
      */
     public function pressAction()
@@ -82,8 +82,8 @@ class AppController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/multimedia", name="multimedia")
-     * @Method("GET")s
+     * @Route("/multimedia/{category}", name="multimedia", requirements={ "category": "image|audio|video"})
+     * @Method("GET")
      */
     public function albumAction()
     {

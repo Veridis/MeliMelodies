@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -12,15 +13,7 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="meli-navbar-collapse">
-            {% set route = app.request.attributes.get('_route') %}
-            <ul class="nav navbar-nav">
-                <li {% if 'home' == route %}class="active"{% endif %}><a href="{{ path('home') }}">Accueil</a></li>
-                <li {% if 'presentation' == route %}class="active"{% endif %}><a href="{{ path('presentation') }}">Présentation</a></li>
-                <li {% if 'contact' == route %}class="active"{% endif %}><a href="{{ path('contact') }}">Contact</a></li>
-                <li {% if 'press' == route %}class="active"{% endif %}><a href="{{ path('press') }}">Presse</a></li>
-                <li {% if 'multimedia' == route %}class="active"{% endif %}><a href="{{ path('multimedia') }}">Multimedia</a></li>
-                <li {% if 'guestbook' == route %}class="active"{% endif %}><a href="{{ path('guestbook') }}">Livre d'Or</a></li>
-            </ul>
+            {{ knp_menu_render('AppBundle:Builder:mainMenu', {'currentClass': 'active'}) }}
             <ul class="nav navbar-nav navbar-right">
                 <form class="navbar-form form-group-sm" role="search">
                     <div class="input-group">

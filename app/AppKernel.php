@@ -19,6 +19,7 @@ class AppKernel extends Kernel
 
             //Externals bundles
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             //Own Bundles
             new AppBundle\AppBundle(),

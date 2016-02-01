@@ -85,3 +85,8 @@ knp_paginator:
         page_name: page
     template:
         pagination: admin/pagination.html.twig
+
+#knp_menu
+knp_menu:
+    twig:
+        template: form/knp_menu.html.twig

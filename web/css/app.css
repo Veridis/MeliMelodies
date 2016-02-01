@@ -11,7 +11,7 @@
 
 
 /*** NAVBAR FIXES ***/
-.navbar .navbar-nav {
+.navbar .navbar-nav.navbar-center {
     /* Changing the navbar disposition to center */
     display: inline-block;
     float: none;
