@@ -22,23 +22,21 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Présentation', array('route' => 'presentation'));
         $menu->addChild('Contact', array('route' => 'contact'));
         $menu->addChild('Presse', array('route' => 'press'));
-        /* // TODO : uncomment this when PR#5 is merged
         $menu->addChild('Multimédia')
             ->setAttribute('dropdown', true)
             ->setAttribute('divider_prepend', true);
         $menu['Multimédia']->addChild('Image', array(
             'route' => 'multimedia',
-            'routeParameters' => array('category', 'image'),
+            'routeParameters' => array('category' => 'image'),
         ));
         $menu['Multimédia']->addChild('Audio', array(
             'route' => 'multimedia',
-            'routeParameters' => array('category', 'audio'),
+            'routeParameters' => array('category' => 'audio'),
         ));
         $menu['Multimédia']->addChild('Video', array(
             'route' => 'multimedia',
-            'routeParameters' => array('category', 'video'),
+            'routeParameters' => array('category' => 'video'),
         ));
-        */
         $menu->addChild('Livre d\'or', array('route' => 'guestbook'));
 
         return $menu;

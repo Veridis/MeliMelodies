@@ -85,9 +85,11 @@ class AppController extends Controller
      * @Route("/multimedia/{category}", name="multimedia", requirements={ "category": "image|audio|video"})
      * @Method("GET")
      */
-    public function albumAction()
+    public function albumAction($category)
     {
-        return $this->render('app/app/album.html.twig');
+        return $this->render('app/app/album.html.twig', array(
+            'category' => $category,
+        ));
     }
 
     /**
