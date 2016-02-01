@@ -3,7 +3,19 @@
 {% block body %}
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
-            <h2>Contactez-nous</h2>
+            <h2>Contactez-nous</h2> <br />
+            <address>
+                <strong>Groupe artistique Méli-Mélodies</strong><br />
+                Hôtel de ville<br />
+                Place de l'Europe<br />
+                BP 122 — 69883 MEYZIEU CEDEX<br />
+                France<br />
+            </address>
+            <address>
+                meli.melodies69@gmail.com<br />
+                06 77 75 04 44
+            </address>
+            <hr />
             {{ form_start(form) }}
                 {{ form_row(form.nickname) }}
                 {{ form_row(form.email) }}

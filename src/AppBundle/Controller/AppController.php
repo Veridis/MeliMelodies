@@ -100,4 +100,15 @@ class AppController extends Controller
     {
         return $this->render('app/app/guestbook.html.twig');
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/agenda", name="agenda")
+     * @Method("GET")
+     */
+    public function agendaAction()
+    {
+        return $this->render('app/app/agenda.html.twig');
+    }
 }
