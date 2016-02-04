@@ -12,11 +12,7 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="meli-navbar-collapse">
-            {% set route = app.request.attributes.get('_route') %}
-            <ul class="nav navbar-nav">
-                <li {% if 'admin-contacts' == route %}class="active"{% endif %}><a href="{{ path('admin-contacts') }}">Contacts</a></li>
-                <li {% if 'admin-medias' == route %}class="active"{% endif %}><a href="{{ path('admin-medias') }}">Multimédias</a></li>
-            </ul>
+            {{ knp_menu_render('AppBundle:Builder:adminMenu', {'currentClass': 'active'}) }}
             <p class="navbar-text navbar-right">
                 <strong>{{ app.user.username }}</strong> | <a href="{{ path('logout') }}" title="Déconnexion" class="navbar-link">Déconnexion</a>
             </p>
