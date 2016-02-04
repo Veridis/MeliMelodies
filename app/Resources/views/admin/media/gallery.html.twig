@@ -3,11 +3,55 @@
 {% block body %}
     <h1>{{ media.title }}</h1>
     {% for widget in media.gallery %}
-        <div class="col-md-3">
+        {% if 'image' == media.category %}
+            <div class="col-md-3">
+                <img src="{{ asset(widget.path) }}" alt="{{ widget.name }}" />
+            </div>
+        {% elseif 'audio' == media.category %}
 
-        </div>
+        {% elseif 'video' == media.category %}
+
+        {% endif %}
+
     {% else %}
         <p class="text-center"><em>Vous n'avez pas encore ajouté de média sur cette gallerie</em></p>
     {% endfor %}
 
+    {{ form_start(form) }}
+    {{ form_row(form.gallery) }}
+    <a href="#" id="addCollection" class="text-success" data-toggle="tooltip" data-placement="right" title="Ajouter une PJ"><span class="glyphicon glyphicon-plus"></span></a>
+    {{ form_errors(form.gallery) }}
+
+    <ul class="list-unstyled" id="file-fields-list" data-prototype="{% filter escape %}{% include 'form/file-collection-prototype.html.twig' with {'form': form.gallery.vars.prototype } %}{% endfilter %}">
+        {{ form_widget(form.gallery) }}
+    </ul>
+    <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var fileCount = '{{ form.gallery|length }}';
+        jQuery(document).ready(function() {
+            jQuery('#addCollection').click(function(e) {
+                e.preventDefault();
+
+                var fileList = jQuery('#file-fields-list');
+
+                var newWidget = fileList.attr('data-prototype');
+                newWidget = newWidget.replace(/__name__/g, fileCount);
+                fileCount++;
+
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(fileList);
+            });
+            jQuery('#file-fields-list').on('click', '.removeColllection', function(e) {
+                e.preventDefault();
+                jQuery('#' + jQuery(this).data('remove')).remove();
+                //Do not fileCount--; to avoid conflicts
+            });
+        })
+    </script>
 {% endblock %}

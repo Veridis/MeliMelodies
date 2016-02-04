@@ -2,14 +2,8 @@
 
 namespace AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use AppBundle\Entity\Media;
-use AdminBundle\Form\MediaType;
 use Symfony\Component\HttpFoundation\Response;
+use AdminBundle\Form\GalleryType;
 
 class MediaController extends Controller
 {
@@ -69,10 +63,33 @@ class MediaController extends Controller
      * @Route("/administration/multimedias/{id}", name="admin-medias-gallery")
      * @Method({"GET", "POST"})
      */
-    public function galleryAction(Media $media)
+    public function galleryAction(Request$request, Media $media)
     {
+        $currentUrl = $this->generateUrl('admin-medias-gallery', array('id' => $media->getId()));
+        $form = $this->createForm(new GalleryType(), $media, array(
+            'method' => 'POST',
+            'action' => $currentUrl,
+        ));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            foreach ($form->getData()->getGallery() as $file) {
+                $file->upload();
+            }
+            $em->persist($form->getData());
+            $em->flush();
+
+            $this->get('meli.flasher')->flashSuccess(sprintf('%d fichiers ont été ajoutés à la gallerie "%s"',
+                $form->getData()->getGallery()->count(), $media->getTitle()));
+
+            return $this->redirect($currentUrl);
+        }
+
+
         return $this->render('admin/media/gallery.html.twig', array(
-            'media' => $media
+            'media' => $media,
+            'form' => $form->createView(),
         ));
     }
 }
