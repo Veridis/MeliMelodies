@@ -29,3 +29,12 @@
 input[type="file"] {
     display: inline-block;
 }
+
+
+/*** SOCIALS ***/
+#social .social-fb {
+    color: #3b5998
+}
+#social .social-yt {
+    color: #FF3333
+}
