@@ -111,7 +111,12 @@ textarea { resize:vertical; }
 #social .social-yt {
     color: #FF3333
 }
-
+/*** ADMIN ***/
+/*** gallery ***/
+#image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+}
 /*** PRESENTATION ***/
 #presentation #presentation-troupe {
     padding-top : 5px;

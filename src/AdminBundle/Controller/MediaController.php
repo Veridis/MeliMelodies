@@ -4,6 +4,14 @@ namespace AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use AdminBundle\Form\GalleryType;
+use AppBundle\Form\FileType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use AppBundle\Entity\Media;
+use AdminBundle\Form\MediaType;
 
 class MediaController extends Controller
 {
@@ -63,25 +71,25 @@ class MediaController extends Controller
      * @Route("/administration/multimedias/{id}", name="admin-medias-gallery")
      * @Method({"GET", "POST"})
      */
-    public function galleryAction(Request$request, Media $media)
+    public function galleryAction(Request $request, Media $media)
     {
+        //TODO : switch $media->type : form image/youtube/son
         $currentUrl = $this->generateUrl('admin-medias-gallery', array('id' => $media->getId()));
-        $form = $this->createForm(new GalleryType(), $media, array(
+        $form = $this->createForm(new FileType(), null, array(
             'method' => 'POST',
             'action' => $currentUrl,
         ));
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->getData();
+            $file->upload();
+            $media->addGallery($file);
             $em = $this->getDoctrine()->getManager();
-            foreach ($form->getData()->getGallery() as $file) {
-                $file->upload();
-            }
-            $em->persist($form->getData());
+            $em->persist($file);
+            $em->persist($media);
             $em->flush();
 
-            $this->get('meli.flasher')->flashSuccess(sprintf('%d fichiers ont été ajoutés à la gallerie "%s"',
-                $form->getData()->getGallery()->count(), $media->getTitle()));
+            $this->get('meli.flasher')->flashSuccess(sprintf('Le fichier %s a été ajouté avec succès.', $file->getName()));
 
             return $this->redirect($currentUrl);
         }
