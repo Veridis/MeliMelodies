@@ -1,0 +1,39 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    <h1>Présentation des membres</h1>
+    <a href="{{ path('admin-member-add') }}" title="Ajouter un membre de la troupe" class="btn btn-success">Ajouter un membre</a>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Poste</th>
+            <th>Description</th>
+            <th>Photo</th>
+            <th>Archivé</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for member in members %}
+            <tr>
+                <td><strong>#{{ member.id }}</strong></td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.role }}</td>
+                <td>{{ member.description|nl2br }}</td>
+                <td><a href="{{ asset(member.photo.path) }}" title="Photo de {{ member.name }}">{{ member.photo.name }}</a></td>
+                <td>{{ member.archived ? '✓' : '✗'}}</td>
+                <td></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center"><em>Aucun membre à lister</em></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(members) }}
+    </div>
+{% endblock %}

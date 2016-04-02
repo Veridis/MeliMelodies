@@ -1,5 +1,61 @@
 {% extends 'app/layout.html.twig' %}
 
 {% block body %}
+<section id="presentation">
+    <div class="row">
+        <div class="well text-center col-md-8 col-md-offset-2" id="presentation-troupe">
+            <h2>Présentation</h2>
+            <p>
+                L'association  "groupe artistique Méli-Mélodies" a été fondée en 1989 par
+                Majolane et Jean Rodriguez (présidents d’honneur).
+            </p>
+            <p>
+                Aujourd’hui, cette troupe de chanteurs partagent sa passion de la musique en préparant
+                des spectacles grandioses, orchestrés de main de maître par sa présidente Marjorie Rascol,
+                aidée et soutenue par l’ensemble du groupe. Les comédies musicales, spectacles créés de toute pièce,
+                alliant mise en scènes, costumes, décors, figurants où les artistes sont à la fois chanteurs et comédiens,
+                ravient un public toujours plus nombreux.
+            </p>
+            <p>
+                Méli-Mélodies, c’est aussi des animations à la carte : mariages, anniversaires, maisons de retraite,
+                kermesses, comité d’entreprises, thés dansants, matinées et soirées privées…
+            </p>
+            <p>
+                Nous adaptons nos prestations* (style, nombre de chanteurs…) à vos attentes et vos désirs.
+            </p>
+            <p>
+                Alors n’hésitez plus, faites appel à notre savoir faire et notre enthousiasme, vous ne serez pas déçus.
+            </p>
+            <p>
+            <em>*Nos prestations comprennent le matériel de sonorisation. Devis sur demande.</em>
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        {% for member in members %}
+        <div class="col-md-3 well member" >
+            <div class="member-container">
+                <div class="member-info">
+                    <strong>{{ member.name }}</strong><br /><em>{{ member.role }}</em><span class="glyphicon glyphicon-menu-up"></span>
+                    <hr />
+                    <p>{{ member.description }}</p>
+                </div>
+                <img src="{{ asset(member.photo.path) }}" at="Photo de {{ member.name }}"/>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.member-info').hover(function() {
+            $(this).find('span').attr('class', 'glyphicon glyphicon-menu-down');
+        }, function() {
+            $(this).find('span').attr('class', 'glyphicon glyphicon-menu-up');
+        });
+    </script>
 {% endblock %}
