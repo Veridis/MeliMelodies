@@ -34,16 +34,9 @@
     <hr />
     <div class="row">
         {% for member in members %}
-        <div class="col-md-3 well member" >
-            <div class="member-container">
-                <div class="member-info">
-                    <strong>{{ member.name }}</strong><br /><em>{{ member.role }}</em><span class="glyphicon glyphicon-menu-up"></span>
-                    <hr />
-                    <p>{{ member.description }}</p>
-                </div>
-                <img src="{{ asset(member.photo.path) }}" at="Photo de {{ member.name }}"/>
+            <div class="col-md-3 ">
+                {% include 'admin/presentation/member_widget.html.twig' with { 'member' : member} %}
             </div>
-        </div>
         {% endfor %}
     </div>
 </section>
@@ -53,9 +46,9 @@
     {{ parent() }}
     <script>
         $('.member-info').hover(function() {
-            $(this).find('span').attr('class', 'glyphicon glyphicon-menu-down');
+            $(this).find('span.carret').attr('class', 'glyphicon glyphicon-menu-down carret');
         }, function() {
-            $(this).find('span').attr('class', 'glyphicon glyphicon-menu-up');
+            $(this).find('span.carret').attr('class', 'glyphicon glyphicon-menu-up carret');
         });
     </script>
 {% endblock %}

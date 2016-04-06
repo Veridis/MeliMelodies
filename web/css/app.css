@@ -94,7 +94,7 @@ input[type="file"] {
 #presentation .member {
     text-align: center;
 }
-#presentation .member div.member-container {
+.member div.member-container {
     margin: 0;
     padding: 0;
     display: inline-block;
@@ -104,11 +104,11 @@ input[type="file"] {
     overflow: hidden;
 }
 
-#presentation .member img {
+.member img {
     width: 200px;
     height: 200px;
 }
-#presentation .member div.member-info {
+.member div.member-info {
     padding: 2px;
     width: 200px;
     height: 200px;
@@ -124,7 +124,7 @@ input[type="file"] {
     -o-transition: all 600ms ease-out;
     transition: all 600ms ease-out;
 }
-#presentation .member div.member-info:hover {
+.member div.member-info:hover {
     top: 0px;
     /* hover in */
     -webkit-transition: all 600ms ease-out;
@@ -133,15 +133,15 @@ input[type="file"] {
     -o-transition: all 600ms ease-out;
     transition: all 600ms ease-out;
 }
-#presentation .member div.member-info span {
+.member div.member-info span.carret {
     position: absolute;
     right: 3px;
     top: 3px;
 }
-#presentation .member div.member-info hr {
+.member div.member-info hr {
     margin: 7px;
     border-color: rgb(119, 119, 119);
 }
-#presentation .member div.member-info p {
+.member div.member-info p {
     font-size: 14px;
 }
