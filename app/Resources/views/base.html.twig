@@ -16,13 +16,35 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block menu %}
-            {% include 'app/menu.html.twig' %}
-        {% endblock %}
-        {% include 'app/flash.html.twig' %}
-
-        <div class="container">
-            {% block body %}{% endblock %}
+        <div id="content">
+            <header id="banner">
+                <img src="http://thumbs.dreamstime.com/z/logo-de-musique-13731704.jpg" alt="Méli-Mélodies"/>
+            </header>
+            {% block menu %}
+                {% include 'app/menu.html.twig' %}
+            {% endblock %}
+            {% include 'app/flash.html.twig' %}
+            <div class="container" id="body">
+                {% block body %}{% endblock %}
+            </div>
+            <footer class="row">
+                <div class="col-md-4 col-md-offset-2">
+                    <h5>INFORMATIONS PRATIQUES</h5>
+                    <ul class="list-unstyled">
+                        <li>CGU</li>
+                        <li>Mentions Légales</li>
+                        <li>Contact</li>
+                        <li>Qui sommes-nous ?</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <h5>NOUS SUIVRE</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="social-fb" href="https://www.facebook.com/Méli-Mélodies-753219008068008/?fref=ts" title="Rejoignez nous sur Facebook" target="_blank"><i class="fa fa-facebook"></i> Méli-Mélodies</a></li>
+                        <li><a class="social-yt" href="https://www.youtube.com/channel/UCx-TRoQdHQuYcMmeipHlEpA" title="Suivez-nous sur Youtube"><i class="fa fa-youtube"></i> Méli-Mélodies</a></li>
+                    </ul>
+                </div>
+            </footer>
         </div>
         {% block javascripts %}
             {% javascripts

@@ -9,6 +9,54 @@
 }
 */
 
+html, body {
+    height: 100%;
+}
+
+/* Wrapper */
+#content {
+    min-height:100%;
+    position:relative;
+}
+
+/*** HEADER/BANNER ***/
+#banner {
+    text-align: center;
+}
+#banner img {
+    width: 200px;
+    height: 200px;
+}
+
+/*** BODY ***/
+#body {
+    padding-bottom:170px; /* Footer Size + 20 px*/
+}
+
+/*** FOOTER ***/
+footer.row {
+    position:absolute;
+    bottom:0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: rgb(116, 83, 133);
+    color: white;
+    height: 150px;
+}
+
+footer ul li {
+    font-size: 14px;
+}
+
+footer h5, footer a {
+    color: white;
+}
+
+
+input[type="file"] {
+    display: inline-block;
+}
 
 /*** NAVBAR FIXES ***/
 .navbar .navbar-nav.navbar-center {
@@ -26,15 +74,74 @@
     text-transform: none;
 }
 
-input[type="file"] {
-    display: inline-block;
-}
-
-
 /*** SOCIALS ***/
 #social .social-fb {
     color: #3b5998
 }
 #social .social-yt {
     color: #FF3333
+}
+
+/*** PRESENTATION ***/
+#presentation #presentation-troupe {
+    padding-top : 5px;
+}
+#presentation #presentation-troupe h2 {
+    margin-top: 0px;
+}
+
+/*** MEMBERS PRESENTATION ***/
+#presentation .member {
+    text-align: center;
+}
+.member div.member-container {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.member img {
+    width: 200px;
+    height: 200px;
+}
+.member div.member-info {
+    padding: 2px;
+    width: 200px;
+    height: 200px;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 155px;
+    background-color: rgba(255, 255, 255, .8);
+    /* hover out */
+    -webkit-transition: all 600ms ease-out;
+    -moz-transition: all 600ms ease-out;
+    -ms-transition: all 600ms ease-out;
+    -o-transition: all 600ms ease-out;
+    transition: all 600ms ease-out;
+}
+.member div.member-info:hover {
+    top: 0px;
+    /* hover in */
+    -webkit-transition: all 600ms ease-out;
+    -moz-transition: all 600ms ease-out;
+    -ms-transition: all 600ms ease-out;
+    -o-transition: all 600ms ease-out;
+    transition: all 600ms ease-out;
+}
+.member div.member-info span.carret {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+.member div.member-info hr {
+    margin: 7px;
+    border-color: rgb(119, 119, 119);
+}
+.member div.member-info p {
+    font-size: 14px;
 }

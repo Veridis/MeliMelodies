@@ -1,0 +1,69 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    <h1>Présentation des membres</h1>
+    <a href="{{ path('admin-member-add') }}" title="Ajouter un membre de la troupe" class="btn btn-success">Ajouter un membre</a>
+    <div class="row">
+        <div class="col-md-9">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Poste</th>
+                    <th>Description</th>
+                    <th>Photo</th>
+                    <th>Archivé</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for member in members %}
+                    <tr>
+                        <td><strong>#{{ member.id }}</strong></td>
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.role }}</td>
+                        <td>{{ member.description|slice(0, 40) }}...</td>
+                        <td><a class="appercu" href="{{ path('admin-member-appercu', { 'id' : member.id }) }}" title="Apperçu">{{ member.photo.name }}</a></td>
+                        <td>{{ member.archived ? '✓' : '✗'}}</td>
+                        <td>
+                            <a href="{{ path('admin-member-edit', {'member' : member.id}) }}" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="right"  title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center"><em>Aucun membre à lister</em></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation text-center">
+                {{ knp_pagination_render(members) }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="appercu" class="text-center">
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.appercu').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $.ajax({
+                url : url,
+                type : 'GET',
+                dataType : 'html',
+                success : function(data, status){
+                    $('#appercu').html(data);
+                }
+            });
+        });
+    </script>
+{% endblock %}

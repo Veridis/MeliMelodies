@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Contact;
 use AppBundle\Form\ContactType;
@@ -33,7 +34,12 @@ class AppController extends Controller
      */
     public function presentationAction()
     {
-        return $this->render('app/app/presentation.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $members = $em->getRepository('AppBundle:Member')->findUnarchived();
+
+        return $this->render('app/app/presentation.html.twig', array(
+            'members' => $members,
+        ));
     }
 
     /**
