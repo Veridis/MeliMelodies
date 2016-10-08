@@ -45,14 +45,7 @@ class MemberController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $ic = new Image();
-            $ic->minHeight = 200;   $ic->maxHeight = 500;
-            $ic->minWidth = 200;    $ic->maxWidth = 500;
-            $ic->allowPortrait = false; $ic->allowLandscape = false;
-            $ic->maxHeightMessage = $ic->maxWidthMessage = $ic->minWidthMessage = $ic->minHeightMessage
-                = 'La hauteur et la largeur doivent être comprises entre 200px et 500px';
-            $ic->allowPortraitMessage = $ic->allowLandscapeMessage
-                = 'Le format de l\'image doit être carrée (hauteur égale largeure)';
+            $ic = $this->getImageMemberConstraint();
             $errors = $this->get('validator')->validate(
                 $request->files->get('member')['photo'],
                 $ic
@@ -83,10 +76,60 @@ class MemberController extends Controller
 
         return $this->render('admin/presentation/add.html.twig', array(
             'form' => $form->createView(),
+            'submit' => 'Ajouter',
         ));
     }
 
+    /**
+     * @Route("/administration/presentation/membre/modifier/{member}", name="admin-member-edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Member $member)
+    {
+        $form = $this->createForm(new MemberType(), $member, array(
+            'method' => 'POST',
+            'action' => $this->generateUrl('admin-member-edit', array('member' => $member->getId())),
+        ));
 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $ic = $this->getImageMemberConstraint();
+            $errors = $this->get('validator')->validate(
+                $request->files->get('member')['photo'],
+                $ic
+            );
+            if (count($errors) > 0) {
+                foreach ($errors as $error) {
+                    $form->get('photo')->addError(new FormError($error->getMessage()));
+                }
+
+                return $this->render('admin/presentation/add.html.twig', array(
+                    'form' => $form->createView(),
+                ));
+            }
+
+            $member = $form->getData();
+            if (null !== $request->files->get('member')['photo']) {
+                $file = new File();
+                $file->setFile($request->files->get('member')['photo']);
+                $file->upload();
+                $member->setPhoto($file);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($member);
+            $em->flush();
+
+            $this->get('meli.flasher')->flashSuccess('Le membre a été modifié.');
+
+            return $this->redirectToRoute('admin-presentation');
+        }
+
+        return $this->render('admin/presentation/add.html.twig', array(
+            'form' => $form->createView(),
+            'submit' => 'Modifier',
+        ));
+    }
 
     /**
      * @Route("/administration/presentation/membre/appercu/{id}", name="admin-member-appercu")
@@ -96,5 +139,22 @@ class MemberController extends Controller
         return $this->render('admin/presentation/member_widget.html.twig', array(
             'member' => $member,
         ));
+    }
+
+    /**
+     * @return Image
+     */
+    private function getImageMemberConstraint()
+    {
+        $ic = new Image();
+        $ic->minHeight = 200;   $ic->maxHeight = 500;
+        $ic->minWidth = 200;    $ic->maxWidth = 500;
+        $ic->allowPortrait = false; $ic->allowLandscape = false;
+        $ic->maxHeightMessage = $ic->maxWidthMessage = $ic->minWidthMessage = $ic->minHeightMessage
+            = 'La hauteur et la largeur doivent être comprises entre 200px et 500px';
+        $ic->allowPortraitMessage = $ic->allowLandscapeMessage
+            = 'Le format de l\'image doit être carrée (hauteur égale largeure)';
+
+        return $ic;
     }
 }
