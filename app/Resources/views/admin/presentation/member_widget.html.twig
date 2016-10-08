@@ -1,12 +1,12 @@
 <div class="well member" >
     <div class="member-container">
+        <img src="{{ asset(member.photo.path) }}" alt="Photo de {{ member.name }}"/>
         <div class="member-info">
             <strong>{{ member.name }}</strong><br /><em>{{ member.role }}</em><span class="glyphicon glyphicon-menu-up carret"></span>
             <hr />
             <p>{{ member.description|slice(0, 100) }}...</p>
             <a href="" title="En savoir plus" data-toggle="modal" data-target="#modal-presentation-{{ member.id }}"><span class="glyphicon glyphicon-info-sign"></span></a>
         </div>
-        <img src="{{ asset(member.photo.path) }}" at="Photo de {{ member.name }}"/>
     </div>
 </div>
 <div class="modal fade" id="modal-presentation-{{ member.id }}">
