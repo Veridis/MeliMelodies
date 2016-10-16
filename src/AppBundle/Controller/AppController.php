@@ -16,7 +16,7 @@ use AppBundle\Form\ContactType;
 class AppController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/", name="home")
      * @Method("GET")
@@ -27,7 +27,7 @@ class AppController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/presentation", name="presentation")
      * @Method("GET")
@@ -43,7 +43,7 @@ class AppController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/contact", name="contact")
      * @Method({"GET", "POST"})
@@ -64,7 +64,7 @@ class AppController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            $this->get('meli.flasher')->flashSuccess('Votre demande a bien été envoyée. Elle sera traitée sous peu.');
+            $this->get('meli.flasher')->flashSuccess('Votre demande a bien été envoyée. Elle sera traitée dès que possible.');
 
             return $this->redirectToRoute('contact');
         }
@@ -75,7 +75,7 @@ class AppController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/presse", name="press")
      * @Method("GET")
@@ -86,7 +86,7 @@ class AppController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/multimedia/{category}", name="multimedia", requirements={ "category": "image|audio|video"})
      * @Method("GET")
@@ -99,7 +99,7 @@ class AppController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/livre-dor", name="guestbook")
      * @Method("GET")
@@ -110,7 +110,7 @@ class AppController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/agenda", name="agenda")
      * @Method("GET")
@@ -118,5 +118,27 @@ class AppController extends Controller
     public function agendaAction()
     {
         return $this->render('app/app/agenda.html.twig');
+    }
+
+    /**
+     * @return Response
+     *
+     * @Route("/cgu", name="cgu")
+     * @Method("GET")
+     */
+    public function cguAction()
+    {
+        return $this->render('app/app/cgu.html.twig');
+    }
+
+    /**
+     * @return Response
+     *
+     * @Route("/mentions-legales", name="legals")
+     * @Method("GET")
+     */
+    public function legalsAction()
+    {
+        return $this->render('app/app/legals.html.twig');
     }
 }

@@ -18,7 +18,7 @@
     <body>
         <div id="content">
             <header id="banner">
-                <img src="http://thumbs.dreamstime.com/z/logo-de-musique-13731704.jpg" alt="Méli-Mélodies"/>
+                <img src="{{ asset('img/banner.png') }}" alt="Méli-Mélodies"/>
             </header>
             {% block menu %}
                 {% include 'app/menu.html.twig' %}
@@ -31,10 +31,10 @@
                 <div class="col-md-4 col-md-offset-2">
                     <h5>INFORMATIONS PRATIQUES</h5>
                     <ul class="list-unstyled">
-                        <li>CGU</li>
-                        <li>Mentions Légales</li>
-                        <li>Contact</li>
-                        <li>Qui sommes-nous ?</li>
+                        <li><a href="{{ path('cgu') }}" title="Conditions Générales d'Utilisation">CGU</a></li>
+                        <li><a href="{{ path('legals') }}" title="Mentions Légales">Mentions Légales</a></li>
+                        <li><a href="{{ path('contact') }}" title="Laissez-nous un mot">Contact</a></li>
+                        <li><a href="{{ path('presentation') }}" title="Decouvrez-en plus sur nous !">Qui sommes-nous ?</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-md-offset-2">
