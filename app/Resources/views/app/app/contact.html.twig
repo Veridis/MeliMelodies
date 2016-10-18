@@ -29,7 +29,7 @@
                 <ul class="list-unstyled" id="file-fields-list" data-prototype="{% filter escape %}{% include 'form/file-collection-prototype.html.twig' with {'form': form.files.vars.prototype } %}{% endfilter %}">
                     {{ form_widget(form.files) }}
                 </ul>
-                <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
+                <input type="submit" value="Envoyer" class="btn btn-default btn-block pull-right" />
             {{ form_end(form) }}
         </div>
     </div>
