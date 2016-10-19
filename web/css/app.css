@@ -116,20 +116,20 @@ input[type="file"] {
     top: 155px;
     background-color: rgba(255, 255, 255, .8);
     /* hover out */
-    -webkit-transition: all 600ms ease-out;
-    -moz-transition: all 600ms ease-out;
-    -ms-transition: all 600ms ease-out;
-    -o-transition: all 600ms ease-out;
-    transition: all 600ms ease-out;
+    -webkit-transition: top 600ms ease-out;
+    -moz-transition: top 600ms ease-out;
+    -ms-transition: top 600ms ease-out;
+    -o-transition: top 600ms ease-out;
+    transition: top 600ms ease-out;
 }
 .member div.member-info:hover {
     top: 0px;
     /* hover in */
-    -webkit-transition: all 600ms ease-out;
-    -moz-transition: all 600ms ease-out;
-    -ms-transition: all 600ms ease-out;
-    -o-transition: all 600ms ease-out;
-    transition: all 600ms ease-out;
+    -webkit-transition: top 600ms ease-out;
+    -moz-transition: top 600ms ease-out;
+    -ms-transition: top 600ms ease-out;
+    -o-transition: top 600ms ease-out;
+    transition: top 600ms ease-out;
 }
 .member div.member-info span.carret {
     position: absolute;
