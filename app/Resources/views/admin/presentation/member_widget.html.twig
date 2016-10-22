@@ -4,7 +4,7 @@
             <strong>{{ member.name }}</strong><br /><em>{{ member.role }}</em><span class="glyphicon glyphicon-menu-up carret"></span>
             <hr />
             <p>{{ member.description|slice(0, 100) }}...</p>
-            <a href="" title="En savoir plus" data-toggle="modal" data-target="#modal-presentation-{{ member.id }}"><span class="glyphicon glyphicon-info-sign"></span></a>
+            <button class="btn btn-link" title="En savoir plus" data-toggle="modal" data-target="#modal-presentation-{{ member.id }}"><span class="glyphicon glyphicon-info-sign"></span></button>
         </div>
     </div>
 </div>
