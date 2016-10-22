@@ -2,16 +2,16 @@
 @gray-darker: lighten(@gray-base, 13.5%);
 @gray-dark: lighten(@gray-base, 20%);
 @gray: rgb(119, 119, 119);
-@gray-light: @link-color;
+@gray-light: rgb(196, 0, 134);
 @gray-lighter: lighten(@gray-base, 93.5%);
-@brand-primary: rgb(125, 89, 162);
+@brand-primary: rgb(83, 59, 101);
 @brand-success: rgb(34, 178, 76);
 @brand-info: rgb(51, 102, 153);
 @brand-warning: rgb(245, 230, 37);
 @brand-danger: rgb(245, 122, 0);
-@body-bg: lighten(rgb(236, 229, 206), 10%);
-@text-color: darken(rgb(79, 13, 23), 10%);
-@link-color: rgb(196, 0, 134);
+@body-bg: rgb(210, 210, 210);
+@text-color: rgb(50, 50, 50);
+@link-color: rgb(198, 0, 134);
 @link-hover-color: darken(@link-color, 15%);
 @link-hover-decoration: underline;
 @font-family-sans-serif: "News Cycle", "Arial Narrow Bold", sans-serif;
@@ -32,7 +32,7 @@
 @headings-font-family: @font-family-serif;
 @headings-font-weight: 700;
 @headings-line-height: 1.1;
-@headings-color: rgb(79, 13, 23);
+@headings-color: @brand-primary;
 @icon-font-path: "../fonts/";
 @icon-font-name: "glyphicons-halflings-regular";
 @icon-font-svg-id: "glyphicons_halflingsregular";
@@ -83,7 +83,7 @@
 @btn-border-radius-base: @border-radius-base;
 @btn-border-radius-large: @border-radius-large;
 @btn-border-radius-small: @border-radius-small;
-@input-bg: lighten(@body-bg, 2%);
+@input-bg: lighten(@well-bg, 5%);
 @input-bg-disabled: @gray-lighter;
 @input-color: @text-color;
 @input-border: @well-border;
@@ -168,7 +168,7 @@
 @navbar-default-toggle-icon-bar-bg: rgb(204, 204, 204);
 @navbar-default-toggle-border-color: rgb(221, 221, 221);
 @navbar-inverse-color: rgb(255, 255, 255);
-@navbar-inverse-bg: rgb(83, 59, 101);
+@navbar-inverse-bg: @brand-primary;
 @navbar-inverse-border: darken(@navbar-inverse-bg, 10%);
 @navbar-inverse-link-color: rgb(255, 255, 255);
 @navbar-inverse-link-hover-color: rgb(255, 255, 255);
@@ -339,7 +339,7 @@
 @thumbnail-border-radius: @border-radius-base;
 @thumbnail-caption-color: @text-color;
 @thumbnail-caption-padding: 9px;
-@well-bg: lighten(rgb(119, 79, 56), 56%);
+@well-bg: lighten(@body-bg, 10%);
 @well-border: darken(@well-bg, 7%);
 @badge-color: rgb(255, 255, 255);
 @badge-link-hover-color: rgb(255, 255, 255);
@@ -385,5 +385,4 @@
 @dl-horizontal-offset: @component-offset-horizontal;
 @dl-horizontal-breakpoint: @grid-float-breakpoint;
 @hr-border: @gray-lighter;
-
 
