@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\GuestBookPost;
+use AppBundle\Form\GuestBookPostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -104,9 +106,22 @@ class AppController extends Controller
      * @Route("/livre-dor", name="guestbook")
      * @Method("GET")
      */
-    public function guestbookAction()
+    public function guestbookAction(Request $request)
     {
-        return $this->render('app/app/guestbook.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('AppBundle:GuestBookPost')->findAllUnarchived();
+        $form = $this->createForm(new GuestBookPostType(), new GuestBookPost(), array(
+            'method' => 'POST',
+            'action' => $this->generateUrl('guestbook-add')
+        ));
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($posts, $request->query->getInt('page', 1), 10);
+
+        return $this->render('app/app/guestbook.html.twig', array(
+            'posts' => $pagination,
+            'form' => $form->createView(),
+        ));
     }
 
     /**

@@ -178,8 +178,12 @@ textarea { resize:vertical; }
     font-weight: 200;
     color: #533b65;
 }
+.quote-card cite em {
+    font-size: 12px;
+    color: rgb(50, 50, 50);
+}
 .quote-card cite::before {
-    content: "—";
+    content: "— ";
 }
 
 .quote-card:before {

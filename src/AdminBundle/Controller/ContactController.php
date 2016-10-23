@@ -4,6 +4,7 @@ namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -30,7 +31,7 @@ class ContactController extends Controller
 
     /**
      * @param Contact $contact
-     * @return Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @Route("/administration/contacts/{id}", name="admin-contact-show")
      * @Method({"GET"})
