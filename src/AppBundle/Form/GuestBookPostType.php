@@ -48,6 +48,4 @@ class GuestBookPostType extends AbstractType
     {
         return 'appbundle_guestbookpost';
     }
-
-
 }

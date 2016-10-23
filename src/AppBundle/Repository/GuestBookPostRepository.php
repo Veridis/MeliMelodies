@@ -6,6 +6,9 @@ use Doctrine\ORM\EntityRepository;
 
 class GuestBookPostRepository extends EntityRepository
 {
+    /**
+     * @return array
+     */
     public function findAllUnarchived()
     {
         $qb = $this->createQueryBuilder('post')

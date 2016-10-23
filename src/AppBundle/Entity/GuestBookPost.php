@@ -163,5 +163,15 @@ class GuestBookPost
     {
         return $this->archived;
     }
+
+    /**
+     * @return $this
+     */
+    public function toggleArchived()
+    {
+        $this->archived = !$this->archived;
+
+        return $this;
+    }
 }
 

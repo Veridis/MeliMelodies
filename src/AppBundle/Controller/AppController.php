@@ -101,6 +101,7 @@ class AppController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return Response
      *
      * @Route("/livre-dor", name="guestbook")
@@ -114,7 +115,6 @@ class AppController extends Controller
             'method' => 'POST',
             'action' => $this->generateUrl('guestbook-add')
         ));
-
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($posts, $request->query->getInt('page', 1), 10);
 

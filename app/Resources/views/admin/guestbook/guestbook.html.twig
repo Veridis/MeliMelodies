@@ -1,0 +1,60 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    <h1>Messages des visiteurs</h1>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Pseudonyme</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Archivé</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                    <tr class="{{ not post.archived ? 'success' : 'warning' }}">
+                        <td><strong>#{{ post.id }}</strong></td>
+                        <td>{{ post.nickname }}</td>
+                        <td>
+                            <a href="#" title="Message de {{ post.nickname }}" data-toggle="popover" data-content="{{ post.text|nl2br }}">
+                                afficher le message
+                            </a>
+                        </td>
+                        <td>{{ post.date|date('d/m/Y') }}</td>
+                        <td>
+                            {% if not post.archived %}
+                                <span class="text-danger">✗</span>
+                            {% else %}
+                                <span class="text-success">✓</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not post.archived %}
+                            <a href="{{ path('admin-guestbook-toggle-archive', {'post' : post.id }) }}?page={{ app.request.query.get('page', 1) }}" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="right"  title="Archiver">
+                                <span class="glyphicon glyphicon-eye-close"></span>
+                            </a>
+                            {% else %}
+                            <a href="{{ path('admin-guestbook-toggle-archive', {'post' : post.id }) }}?page={{ app.request.query.get('page', 1) }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="right"  title="Désarchiver">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center"><em>Aucun membre à lister</em></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation text-center">
+                {{ knp_pagination_render(posts) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
