@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,30 +16,30 @@ class MemberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', Type\TextType::class, array(
                 'label' => 'Nom',
                 'attr' => array(
                     'placeholder' => 'Nom et prénom',
                 ),
             ))
-            ->add('role', 'text', array(
+            ->add('role', Type\TextType::class, array(
                 'label' => 'Rôle',
                 'attr' => array(
                     'placeholder' => 'Rôle',
                 ),
             ))
-            ->add('description', 'textarea', array(
+            ->add('description', Type\TextareaType::class, array(
                 'label' => 'Déscription',
                 'attr' => array(
                     'placeholder' => 'Déscription',
                     'rows' => '12',
                 ),
             ))
-            ->add('archived', 'checkbox', array(
+            ->add('archived', Type\CheckboxType::class, array(
                 'label' => 'Archiver (ne plus apparaître sur la page présentation)',
                 'required' => false,
             ))
-            ->add('photo', 'file' , array(
+            ->add('photo', Type\FileType::class , array(
                 'label' => 'Photo (format carrée)',
                 'mapped' => false,
             ));
@@ -53,5 +54,13 @@ class MemberType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Member'
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'appbundle_member';
     }
 }

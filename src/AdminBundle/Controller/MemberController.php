@@ -11,13 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\Image;
 
 class MemberController extends Controller
 {
     /**
+     * @param Request $request
+     * @return Response
+     *
      * @Route("/administration/presentation", name="admin-presentation")
-     * @Method({"GET"})
+     * @Method("GET")
      */
     public function listAction(Request $request)
     {
@@ -33,6 +37,9 @@ class MemberController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return Response
+     *
      * @Route("/administration/presentation/membre/ajouter", name="admin-member-add")
      * @Method({"GET", "POST"})
      */
@@ -46,10 +53,7 @@ class MemberController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $ic = $this->getImageMemberConstraint();
-            $errors = $this->get('validator')->validate(
-                $request->files->get('member')['photo'],
-                $ic
-            );
+            $errors = $this->get('validator')->validate($request->files->get('member')['photo'], $ic);
             if (count($errors) > 0) {
                 foreach ($errors as $error) {
                     $form->get('photo')->addError(new FormError($error->getMessage()));
@@ -59,13 +63,12 @@ class MemberController extends Controller
                     'form' => $form->createView(),
                 ));
             }
-
+            $em = $this->getDoctrine()->getManager();
             $member = $form->getData();
             $file = new File();
             $file->setFile($request->files->get('member')['photo']);
             $file->upload();
             $member->setPhoto($file);
-            $em = $this->getDoctrine()->getManager();
             $em->persist($member);
             $em->flush();
 
@@ -81,6 +84,10 @@ class MemberController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Member $member
+     * @return Response
+     *
      * @Route("/administration/presentation/membre/modifier/{member}", name="admin-member-edit")
      * @Method({"GET", "POST"})
      */
@@ -132,7 +139,11 @@ class MemberController extends Controller
     }
 
     /**
+     * @param Member $member
+     * @return Response
+     *
      * @Route("/administration/presentation/membre/appercu/{id}", name="admin-member-appercu")
+     * @Method("GET")
      */
     public function appercuAction(Member $member)
     {

@@ -26,12 +26,12 @@ class Contact
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="Ce champ ne peut être vide")
+     * @Assert\NotBlank(message="Ce champ ne peut être vide.")
      * @Assert\Length(
      *      min=2,
      *      max=50,
-     *      minMessage="Le pseudo ne peut pas faire moins de {{ limit }} charactères",
-     *      maxMessage="Le pseudo ne peut pas faire plus de {{ limit }} charactères"
+     *      minMessage="Le pseudo ne peut pas faire moins de {{ limit }} charactères.",
+     *      maxMessage="Le pseudo ne peut pas faire plus de {{ limit }} charactères."
      * )
      *
      * @ORM\Column(name="nickname", type="string", length=50)
@@ -41,8 +41,8 @@ class Contact
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="Ce champ ne peut être vide")
-     * @Assert\Email(message="L'adresse e-mail n'est pas valide")
+     * @Assert\NotBlank(message="Ce champ ne peut être vide.")
+     * @Assert\Email(message="L'adresse e-mail n'est pas valide.")
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
@@ -58,12 +58,12 @@ class Contact
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="Ce champ ne peut être vide")
+     * @Assert\NotBlank(message="Ce champ ne peut être vide.")
      * @Assert\Length(
      *      min=2,
      *      max=150,
-     *      minMessage="Le pseudo ne peut pas faire moins de {{ limit }} charactères",
-     *      maxMessage="Le pseudo ne peut pas faire plus de {{ limit }} charactères"
+     *      minMessage="Le message ne peut pas faire moins de {{ limit }} charactères.",
+     *      maxMessage="Le message ne peut pas faire plus de {{ limit }} charactères."
      * )
      *
      * @ORM\Column(name="subject", type="string", length=150)

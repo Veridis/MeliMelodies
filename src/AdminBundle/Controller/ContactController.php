@@ -7,14 +7,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use AppBundle\Entity\Contact;
 
 class ContactController extends Controller
 {
     /**
+     * @param Request $request
+     * @return Response
+     *
      * @Route("/administration/contacts", name="admin-contacts")
-     * @Method({"GET"})
+     * @Method("GET")
      */
     public function listAction(Request $request)
     {
@@ -34,8 +36,7 @@ class ContactController extends Controller
      * @return Response
      *
      * @Route("/administration/contacts/{id}", name="admin-contact-show")
-     * @Method({"GET"})
-     * @ParamConverter("contact", class="AppBundle:Contact")
+     * @Method("GET")
      */
     public function showAction(Contact $contact)
     {
