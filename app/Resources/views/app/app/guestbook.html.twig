@@ -1,5 +1,31 @@
 {% extends 'app/layout.html.twig' %}
 
 {% block body %}
-    {#% include 'errors/503.html.twig' %#}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" data-target="#guestbook-form">
+                Laissez nous un petit mot
+            </button>
+            <div class="collapse" id="guestbook-form">
+                {{ form_start(form) }}
+                {{ form_row(form.nickname) }}
+                {{ form_row(form.text) }}
+                <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
+                {{ form_end(form) }}
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        {% for post in posts %}
+            <blockquote class="quote-card">
+                <p>{{ post.text|nl2br }}</p>
+                <cite>{{ post.nickname|default('Anonyme') }}, <em>le {{ post.date|date('d/m/Y') }}</em></cite>
+            </blockquote>
+        {% endfor %}
+        <div class="navigation text-center">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </div>
 {% endblock %}
