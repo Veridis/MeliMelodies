@@ -9,18 +9,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use AppBundle\Entity\Media;
 use AdminBundle\Form\MediaType;
+use Symfony\Component\HttpFoundation\Response;
 
 class MediaController extends Controller
 {
     /**
+     * @param Request $request
+     * @return Response
+     *
      * @Route("/administration/multimedias", name="admin-medias")
-     * @Method({"GET"})
+     * @Method("GET")
      */
     public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $medias = $em->getRepository('AppBundle:Media')->findAll();
-
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($medias, $request->query->getInt('page', 1), 10);
 
@@ -30,6 +33,9 @@ class MediaController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return Response
+     *
      * @Route("/administration/multimedias/ajouter", name="admin-medias-add")
      * @Method({"GET", "POST"})
      */
@@ -41,7 +47,6 @@ class MediaController extends Controller
         ));
 
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData());
@@ -58,9 +63,11 @@ class MediaController extends Controller
     }
 
     /**
+     * @param Media $media
+     * @return Response
+     *
      * @Route("/administration/multimedias/{id}", name="admin-medias-gallery")
      * @Method({"GET", "POST"})
-     * @ParamConverter("media", class="AppBundle:Media")
      */
     public function galleryAction(Media $media)
     {

@@ -3,17 +3,16 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use AppBundle\Form\FileType;
 
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nickname', 'text', array(
+            ->add('nickname', Type\TextType::class, array(
                 'label' => 'Pseudo',
                 'trim' => true,
                 'attr' => array(
@@ -21,27 +20,27 @@ class ContactType extends AbstractType
                     'maxlength' => 40,
                 ),
             ))
-            ->add('email', 'email', array(
+            ->add('email', Type\EmailType::class, array(
                 'label' => 'E-mail',
                 'trim' => true,
                 'attr' => array(
                     'placeholder' => 'E-mail',
                 ),
             ))
-            ->add('subject', 'text', array(
+            ->add('subject', Type\TextType::class, array(
                 'label' => 'Sujet',
                 'attr' => array(
                     'placeholder' => 'Sujet',
                 ),
             ))
-            ->add('message', 'textarea', array(
+            ->add('message', Type\TextareaType::class, array(
                 'label' => 'Message',
                 'attr' => array(
                     'placeholder' => 'Message',
                     'rows' => '10',
                 ),
             ))
-            ->add('files', 'collection', array(
+            ->add('files', Type\CollectionType::class, array(
                 'type' => new FileType(),
                 'label' => 'Pièces-jointes',
                 'required' => false,
@@ -56,5 +55,13 @@ class ContactType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Contact',
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'appbundle_contact';
     }
 }

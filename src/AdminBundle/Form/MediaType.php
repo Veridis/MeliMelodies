@@ -3,6 +3,7 @@
 namespace AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\Media;
@@ -16,7 +17,7 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', Type\TextType::class, array(
                 'label' => 'Titre',
                 'trim' => true,
                 'attr' => array(
@@ -24,10 +25,10 @@ class MediaType extends AbstractType
                     'maxlength' => 128,
                 ),
             ))
-            ->add('category', 'choice', array(
+            ->add('category', Type\ChoiceType::class, array(
                 'label' => 'Categorie',
                 'choices' => Media::getCategories(),
-                'empty_value' => 'Selectionnez la categorie'
+                'empty_value' => 'Selectionnez la categorie',
             ))
         ;
     }

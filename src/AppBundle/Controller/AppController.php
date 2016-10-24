@@ -45,6 +45,7 @@ class AppController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return Response
      *
      * @Route("/contact", name="contact")

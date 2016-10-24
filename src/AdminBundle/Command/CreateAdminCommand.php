@@ -11,7 +11,7 @@ use AdminBundle\Entity\Admin;
 
 /**
  * Class CreateAdminCommand
- * This command create a Admin User with an encoded password
+ * This command create an Admin User with an encoded password
  *
  * @package AdminBundle\Command
  */
