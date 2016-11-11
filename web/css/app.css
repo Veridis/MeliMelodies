@@ -66,6 +66,10 @@ input[type="file"] {
 }
 textarea { resize:vertical; }
 
+.note-editor {
+    width: 100% !important;
+}
+
 /*** NAVBAR FIXES ***/
 .navbar .navbar-nav.navbar-center {
     /* Changing the navbar disposition to center */

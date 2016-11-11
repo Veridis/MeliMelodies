@@ -89,3 +89,11 @@ knp_paginator:
 knp_menu:
     twig:
         template: form/knp_menu.html.twig
+
+#summernote
+fm_summernote:
+    language: fr-FR
+    include_jquery: false
+    include_bootstrap: false
+    include_fontawesome: false
+

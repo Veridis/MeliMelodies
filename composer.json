@@ -23,7 +23,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "symfony/assetic-bundle": "^2.7",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "knplabs/knp-menu-bundle": "2.0"
+        "knplabs/knp-menu-bundle": "2.0",
+        "helios-ag/fm-summernote-bundle": "^0.2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
