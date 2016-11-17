@@ -1,0 +1,10 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 well">
+            {% include 'admin/news/newsTemplate.html.twig' with { 'news' : news} %}
+        </div>
+    </div>
+{% endblock %}
+

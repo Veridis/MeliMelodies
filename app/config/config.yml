@@ -97,3 +97,8 @@ fm_summernote:
     include_bootstrap: false
     include_fontawesome: false
 
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+

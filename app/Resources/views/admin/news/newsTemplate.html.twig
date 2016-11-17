@@ -1,0 +1,10 @@
+<h2 id="{{ news.slug }}">Blog Post Title — <span class="lead">par {{ news.author.username }}</span></h2>
+<hr />
+<div>
+    <p class="text-center"><strong>{{ news.intro }}</strong></p>
+    <hr />
+    {{ news.content|raw }}
+</div>
+<hr />
+<p class="pull-right"><span class="glyphicon glyphicon-time"></span> Posté le {{ news.createdDate|date('d/m/Y, \\à g:ia', 'Europe/Paris') }}</p>
+<div class="clearfix">

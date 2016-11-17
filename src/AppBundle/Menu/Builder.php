@@ -50,8 +50,9 @@ class Builder implements ContainerAwareInterface
             ),
         ));
 
-        $menu->addChild('Contacts', array('route' => 'admin-contacts'));
+        $menu->addChild('News', array('route' => 'admin-news'));
         $menu->addChild('Multimédias', array('route' => 'admin-medias'));
+        $menu->addChild('Contacts', array('route' => 'admin-contacts'));
         $menu->addchild('Presentation', array('route' => 'admin-presentation'));
         $menu->addchild('Livre d\'or', array('route' => 'admin-guestbook'));
 
