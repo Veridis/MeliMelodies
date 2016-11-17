@@ -32,6 +32,10 @@ html, body {
     padding-bottom:170px; /* Footer Size + 20 px*/
 }
 
+.well hr {
+    border-color: rgb(210, 210, 210);
+}
+
 /*** FOOTER ***/
 footer.row {
     position:absolute;

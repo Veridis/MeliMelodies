@@ -26,7 +26,12 @@ class AppController extends Controller
      */
     public function homeAction()
     {
-        return $this->render('app/app/home.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $news = $em->getRepository('AppBundle:News')->findAllActives();
+
+        return $this->render('app/app/home.html.twig', array(
+            'news' => $news,
+        ));
     }
 
     /**
