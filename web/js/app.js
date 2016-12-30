@@ -5,4 +5,8 @@ jQuery(document).ready(function() {
         html : true,
         trigger: 'click focus'
     });
+
+});
+jQuery(document).ready(function() {
+    jQuery('.nailthumb-container').nailthumb();
 });

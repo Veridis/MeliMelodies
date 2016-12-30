@@ -104,6 +104,13 @@ textarea { resize:vertical; }
     text-transform: none;
 }
 
+/*** ThumNails Gallery ***/
+.square-thumb {
+    width: 150px;
+    height: 150px;
+}
+
+
 /*** SOCIALS ***/
 #social .social-fb {
     color: #3b5998

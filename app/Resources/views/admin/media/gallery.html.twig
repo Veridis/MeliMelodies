@@ -27,22 +27,10 @@
         <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
     {{ form_end(form) }}
 
-    {# modal #}
-    <div class="modal fade" id="image-preview" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                    <img />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+    <hr />
+    <h3>Apperçu</h3>
+    <div class="row">
+        {% include 'admin/media/widgetListTemplate.html.twig' with {'media' : media} %}
     </div>
 {% endblock %}
 

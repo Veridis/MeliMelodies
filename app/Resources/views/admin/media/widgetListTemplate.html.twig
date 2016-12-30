@@ -1,0 +1,38 @@
+{% for widget in media.gallery %}
+    {% if 'image' == media.category %}
+        <div class="col-xs-4 col-md-2">
+            <a href="#" data-toggle="modal" data-target="#image-preview"
+               data-href="{{ asset(widget.path) }}"
+               data-id="{{ widget.id }}">
+                <div class="nailthumb-container square-thumb img-rounded img-thumbnail">
+                    <img src="{{ asset(widget.path) }}" alt="image {{ loop.index }} - {{ media.title }}">
+                </div>
+            </a>
+        </div>
+    {% elseif 'audio' == media.category %}
+
+    {% elseif 'video' == media.category %}
+
+    {% endif %}
+
+{% else %}
+    <p class="text-center"><em>Aucune media présent dans cette gallerie</em></p>
+{% endfor %}
+
+{# modal #}
+<div class="modal fade" id="image-preview" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <img />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

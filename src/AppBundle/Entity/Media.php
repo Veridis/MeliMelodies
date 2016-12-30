@@ -61,9 +61,15 @@ class Media
      */
     private $gallery;
 
+    private $videos;
+
+    private $audios;
+
     public function __construct()
     {
         $this->gallery = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+        $this->audios = new ArrayCollection();
         $this->createdDate = new \DateTime('now');
     }
 
