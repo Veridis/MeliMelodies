@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\GuestBookPost;
+use AppBundle\Entity\News;
 use AppBundle\Form\GuestBookPostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -25,7 +26,12 @@ class AppController extends Controller
      */
     public function homeAction()
     {
-        return $this->render('app/app/home.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $news = $em->getRepository('AppBundle:News')->findAllActives();
+
+        return $this->render('app/app/home.html.twig', array(
+            'news' => $news,
+        ));
     }
 
     /**

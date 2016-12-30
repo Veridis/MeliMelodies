@@ -1,0 +1,15 @@
+<div class="well">
+    <h2 id="{{ new.slug }}" class="text-center">{{ new.title }}</h2>
+    <hr />
+    <p class="text-justify"><strong>{{ new.intro }}</strong></p>
+    <div class="collapse" id="content_{{ new.id }}">
+        <hr />
+        {{ new.content|raw }}
+        <div class="clearfix"></div>
+    </div>
+    <a class="btn btn-primary pull-right" data-toggle="collapse" href="#content_{{ new.id }}">Lire la suite</a>
+    <div class="clearfix"></div>
+    <hr />
+    <p class="pull-right"><span class="glyphicon glyphicon-time">
+                    </span> Posté par <strong>{{ new.author.username }}</strong> le {{ new.createdDate|date('d/m/Y, \\à H:i', 'Europe/Paris') }}</p>
+</div>

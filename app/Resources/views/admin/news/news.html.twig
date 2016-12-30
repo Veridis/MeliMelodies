@@ -1,0 +1,44 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    <h1>News</h1>
+    <a href="{{ path('admin-news-add') }}" title="Ajouter une news" class="btn btn-success">Ajouter un news</a>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Affichée</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for new in news %}
+                <tr>
+                    <td><strong>#{{ new.id }}</strong></td>
+                    <td>{{ new.createdDate|date('d/m/Y H:i') }}</td>
+                    <td>{{ new.title }}</td>
+                    <td>{{ new.author.username }}</td>
+                    <td>{{  new.active ? '✓' : '✗'}}</td>
+                    <td>
+                        <a href="{{ path('admin-news-edit', {'news' : new.id}) }}" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="right" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('admin-news-show', {'slug' : new.slug}) }}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="Voir l'apperçu"><span class="glyphicon glyphicon-eye-open"></span></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center"><em>Aucun membre à lister</em></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(news) }}
+        </div>
+    </div>
+{% endblock %}
+
