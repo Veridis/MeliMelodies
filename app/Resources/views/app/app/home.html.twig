@@ -19,7 +19,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        $('a[data-toggle]').click(function (e) {
+        $('a[data-toggle].toggle-news').click(function (e) {
            if ('Masquer' === $(this).text()) {
                $(this).text('Lire la suite');
            } else {
