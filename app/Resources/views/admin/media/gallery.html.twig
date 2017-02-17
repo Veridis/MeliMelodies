@@ -3,32 +3,51 @@
 {% block body %}
     <h1>{{ media.title }}</h1>
     <ul>
-    {% for widget in media.gallery %}
         {% if 'image' == media.category %}
-            <li>
-                <a href="#" title="Voir l'apperçu" data-toggle="modal" data-target="#image-preview"
-                    data-href="{{ asset(widget.path) }}"
-                    data-id="{{ widget.id }}">{{ widget.name }}</a>
-            </li>
+            {% for widget in media.gallery %}
+                <li>
+                    <a href="#" title="Voir l'apperçu" data-toggle="modal" data-target="#image-preview"
+                       data-href="{{ asset(widget.path) }}"
+                       data-id="{{ widget.id }}">{{ widget.name }}</a>
+                </li>
+            {% else %}
+                <p class="text-center"><em>Vous n'avez pas encore ajouté de média sur cette gallerie</em></p>
+            {% endfor %}
         {% elseif 'audio' == media.category %}
 
         {% elseif 'video' == media.category %}
-
+            {% for code, title in media.videos %}
+            <li>
+                <a href="https://www.youtube.com/watch?v={{ code }}" title="Voir la video sur youtube" target="_blank">{{ title }}</a>
+            </li>
+            {% else %}
+                <p class="text-center"><em>Vous n'avez pas encore ajouté de média sur cette gallerie</em></p>
+            {% endfor %}
         {% endif %}
-
-    {% else %}
-        <p class="text-center"><em>Vous n'avez pas encore ajouté de média sur cette gallerie</em></p>
-    {% endfor %}
     </ul>
 
-    <h3>Ajouter un fichier</h3>
-    {{ form_start(form) }}
+    {% if 'image' == media.category %}
+        <h3>Ajouter un fichier</h3>
+        {{ form_start(form) }}
         {{ form_row(form.file) }}
         <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
-    {{ form_end(form) }}
+        {{ form_end(form) }}
 
-    <hr />
-    <h3>Apperçu</h3>
+        <hr />
+        <h3>Apperçu</h3>
+    {% elseif 'audio' == media.category %}
+
+    {% elseif 'video' == media.category %}
+        <h3>Ajouter une video</h3>
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.code) }}
+        <input type="submit" value="Envoyer" class="btn btn-primary btn-block pull-right" />
+        {{ form_end(form) }}
+
+        <hr />
+        <h3>Apperçu</h3>
+    {% endif %}
     <div class="row">
         {% include 'admin/media/widgetListTemplate.html.twig' with {'media' : media} %}
     </div>

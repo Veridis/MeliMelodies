@@ -4,7 +4,7 @@
     {% for gallery in galleries %}
         {% if gallery.category == category %}
             <div class="row well">
-                <h3>{{ gallery.title }} <small>({{ gallery.gallery|length }})</small></h3>
+                <h3>{{ gallery.title }} <small>({{ gallery.getLength() }})</small></h3>
                 <hr />
                 {% include 'admin/media/widgetListTemplate.html.twig' with {'media' : gallery} %}
             </div>

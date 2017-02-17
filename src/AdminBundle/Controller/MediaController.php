@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Controller;
 
+use AdminBundle\Form\VideoType;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Form\FileType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -71,31 +72,58 @@ class MediaController extends Controller
      */
     public function galleryAction(Request $request, Media $media)
     {
-        //TODO : switch $media->type : form image/youtube/son
-        $currentUrl = $this->generateUrl('admin-medias-gallery', array('id' => $media->getId()));
-        $form = $this->createForm(new FileType(), null, array(
-            'method' => 'POST',
-            'action' => $currentUrl,
-        ));
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->getData();
-            $file->upload();
-            $media->addGallery($file);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($file);
-            $em->persist($media);
-            $em->flush();
+        if (Media::CATEGORY_IMAGE === $media->getCategory()) {
+            $currentUrl = $this->generateUrl('admin-medias-gallery', array('id' => $media->getId()));
+            $form = $this->createForm(new FileType(), null, array(
+                'method' => 'POST',
+                'action' => $currentUrl,
+            ));
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $file = $form->getData();
+                $file->upload();
+                $media->addGallery($file);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($file);
+                $em->persist($media);
+                $em->flush();
 
-            $this->get('meli.flasher')->flashSuccess(sprintf('Le fichier %s a été ajouté avec succès.', $file->getName()));
+                $this->get('meli.flasher')->flashSuccess(sprintf('Le fichier %s a été ajouté avec succès.', $file->getName()));
 
-            return $this->redirect($currentUrl);
+                return $this->redirect($currentUrl);
+            }
+
+
+            return $this->render('admin/media/gallery.html.twig', array(
+                'media' => $media,
+                'form' => $form->createView(),
+            ));
+        } elseif (Media::CATEGORY_VIDEO === $media->getCategory()) {
+            $currentUrl = $this->generateUrl('admin-medias-gallery', array('id' => $media->getId()));
+            $form = $this->createForm(new VideoType(), null, array(
+                'method' => 'POST',
+                'action' => $currentUrl,
+            ));
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $code = $form->getData()['code'];
+                $title = $form->getData()['title'];
+                $media->addVideo($code, $title);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($media);
+                $em->flush();
+
+                $this->get('meli.flasher')->flashSuccess(sprintf('La video a été ajoutée avec succès.'));
+
+                return $this->redirect($currentUrl);
+            }
+
+
+            return $this->render('admin/media/gallery.html.twig', array(
+                'media' => $media,
+                'form' => $form->createView(),
+            ));
+            return new Response('OK');
         }
-
-
-        return $this->render('admin/media/gallery.html.twig', array(
-            'media' => $media,
-            'form' => $form->createView(),
-        ));
     }
 }

@@ -10,6 +10,7 @@
             <th>Titre</th>
             <th>Categorie</th>
             <th>Date de création</th>
+            <th>Affichée</th>
             <th></th>
         </tr>
         </thead>
@@ -20,8 +21,9 @@
                 <td>{{ media.title }}</td>
                 <td><span class="label label-{{ media.getCategoryColor() }}">{{ media.category }}</span></td>
                 <td>{{ media.createdDate|date('d-m-Y') }}</td>
+                <td>{{ media.active ? '✓' : '✗'}}</td>
                 <td>
-                    <a href="{{ path('admin-medias-gallery', {'id' : media.id}) }}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="Voir la gallerie" ><span class="glyphicon glyphicon-th"></span></a>
+                    <a href="{{ path('admin-medias-gallery', {'id' : media.id }) }}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="right" title="Voir la gallerie" ><span class="glyphicon glyphicon-th"></span></a>
                 </td>
             </tr>
         {% else %}

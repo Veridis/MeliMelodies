@@ -28,10 +28,6 @@ class Builder implements ContainerAwareInterface
             'route' => 'multimedia',
             'routeParameters' => array('category' => 'image'),
         ));
-        $menu['Multimédia']->addChild('Audio', array(
-            'route' => 'multimedia',
-            'routeParameters' => array('category' => 'audio'),
-        ));
         $menu['Multimédia']->addChild('Vidéo', array(
             'route' => 'multimedia',
             'routeParameters' => array('category' => 'video'),
