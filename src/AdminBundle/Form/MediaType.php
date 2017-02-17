@@ -30,6 +30,10 @@ class MediaType extends AbstractType
                 'choices' => Media::getCategories(),
                 'empty_value' => 'Selectionnez la categorie',
             ))
+            ->add('active', Type\CheckboxType::class, array(
+                'required' => false,
+                'label' => 'Afficher la gallerie',
+            ))
         ;
     }
     

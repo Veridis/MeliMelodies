@@ -11,3 +11,17 @@
         {% endif %}
     {% endfor %}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('#image-preview').on('shown.bs.modal', function (e) {
+            var link = $(e.relatedTarget);
+            var id = link.data('id');
+            var path = link.data('href');
+            var name = link.text();
+            $(this).find('.modal-title').text(name);
+            $(this).find('.modal-body img').attr('src', path);
+        })
+    </script>
+{% endblock %}

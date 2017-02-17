@@ -7,6 +7,9 @@ jQuery(document).ready(function() {
     });
 
 });
+$('[data-toggle=confirmation]').confirmation({
+    rootSelector: '[data-toggle=confirmation]',
+});
 jQuery(document).ready(function() {
     jQuery('.nailthumb-container').nailthumb();
 });

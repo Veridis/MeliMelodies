@@ -64,6 +64,38 @@ class MediaController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Media $media
+     * @return Response
+     *
+     * @Route("/administration/multimedias/modifier/{id}", name="admin-medias-edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Media $media)
+    {
+        $form = $this->createForm(new MediaType(), $media, array(
+            'method' => 'POST',
+            'action' => $this->generateUrl('admin-medias-edit', array('id' => $media->getId()))
+        ));
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
+
+            $this->get('meli.flasher')->flashSuccess('La gallerie a été Modifiée.');
+
+            return $this->redirectToRoute('admin-medias');
+        }
+
+        return $this->render('admin/media/edit.html.twig', array(
+            'form' => $form->createView(),
+            'media' => $media,
+        ));
+    }
+
+    /**
      * @param Media $media
      * @return Response
      *
@@ -123,7 +155,52 @@ class MediaController extends Controller
                 'media' => $media,
                 'form' => $form->createView(),
             ));
-            return new Response('OK');
         }
+    }
+
+    /**
+     * @param int $id
+     * @param int $fileId
+     * @return Response
+     *
+     * @Route("/administration/multimedias/{id}/remove-image/{fileId}", name="admin-medias-gallery-remove-image")
+     * @Method({"GET", "POST"})
+     */
+    public function removeImageAction($id, $fileId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $media = $em->getRepository('AppBundle:Media')->findOneWithRelations($id);
+        $file = $em->getRepository('AppBundle:File')->find($fileId);
+        $media->removeGallery($file);
+        $em->remove($file);
+        $em->persist($media);
+        $em->flush();
+
+        return $this->redirectToRoute('admin-medias-gallery', array(
+            'id' => $id,
+        ));
+    }
+
+    /**
+     * @param int $id
+     * @param string $ytCode
+     * @return Response
+     *
+     * @Route("/administration/multimedias/{id}/remove-video/{ytCode}", name="admin-medias-gallery-remove-video")
+     * @Method({"GET", "POST"})
+     */
+    public function removeVideoAction($id, $ytCode)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $media = $em->getRepository('AppBundle:Media')->findOneWithRelations($id);
+        $videos = $media->getVideos();
+        unset($videos[$ytCode]);
+        $media->setVideos($videos);
+        $em->persist($media);
+        $em->flush();
+
+        return $this->redirectToRoute('admin-medias-gallery', array(
+            'id' => $id,
+        ));
     }
 }

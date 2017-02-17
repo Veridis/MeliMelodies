@@ -15,4 +15,16 @@ class MediaRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findOneWithRelations($id)
+    {
+        $qb = $this->createQueryBuilder('media')
+            ->leftJoin('media.gallery', 'gallery')
+            ->addSelect('gallery')
+            ->where('media.id = :id')
+            ->setParameter('id', $id)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

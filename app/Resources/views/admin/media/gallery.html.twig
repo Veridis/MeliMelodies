@@ -8,7 +8,12 @@
                 <li>
                     <a href="#" title="Voir l'apperçu" data-toggle="modal" data-target="#image-preview"
                        data-href="{{ asset(widget.path) }}"
-                       data-id="{{ widget.id }}">{{ widget.name }}</a>
+                       data-id="{{ widget.id }}">{{ widget.name }}</a> -
+                    <a href="{{ path('admin-medias-gallery-remove-image', { 'id' : media.id, 'fileId' : widget.id }) }}"
+                       data-toggle="confirmation" data-title="Supprimer ?" class="btn btn-link"
+                       data-btn-ok-label="Oui", data-btn-cancel-label="Non">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
                 </li>
             {% else %}
                 <p class="text-center"><em>Vous n'avez pas encore ajouté de média sur cette gallerie</em></p>
@@ -18,7 +23,12 @@
         {% elseif 'video' == media.category %}
             {% for code, title in media.videos %}
             <li>
-                <a href="https://www.youtube.com/watch?v={{ code }}" title="Voir la video sur youtube" target="_blank">{{ title }}</a>
+                <a href="https://www.youtube.com/watch?v={{ code }}" title="Voir la video sur youtube" target="_blank">{{ title }}</a> -
+                <a href="{{ path('admin-medias-gallery-remove-video', { 'id' : media.id, 'ytCode' : code }) }}"
+                   data-toggle="confirmation" data-title="Supprimer ?" class="btn btn-link"
+                   data-btn-ok-label="Oui", data-btn-cancel-label="Non">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
             </li>
             {% else %}
                 <p class="text-center"><em>Vous n'avez pas encore ajouté de média sur cette gallerie</em></p>

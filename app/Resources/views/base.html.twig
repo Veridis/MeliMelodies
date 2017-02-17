@@ -48,7 +48,10 @@
         {% block javascripts %}
             {% javascripts
                 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
-                'js/*'
+                'js/bootstrap.min.js'
+                'js/bootstrap-confirmation.min.js'
+                'js/nailthumb.1.1.min.js'
+                'js/app.js'
                 output='js/compiled/appc.js' %}
             <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
