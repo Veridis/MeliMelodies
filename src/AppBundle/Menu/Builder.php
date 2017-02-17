@@ -21,7 +21,6 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Accueil', array('route' => 'home'));
         $menu->addChild('Présentation', array('route' => 'presentation'));
         $menu->addChild('Contact', array('route' => 'contact'));
-        $menu->addChild('Presse', array('route' => 'press'));
         $menu->addChild('Multimédia')
             ->setAttribute('dropdown', true)
             ->setAttribute('divider_prepend', true);

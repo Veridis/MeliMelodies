@@ -10,6 +10,10 @@
     <a class="btn btn-primary pull-right toggle-news" data-toggle="collapse" href="#content_{{ new.id }}">Lire la suite</a>
     <div class="clearfix"></div>
     <hr />
-    <p class="pull-right"><span class="glyphicon glyphicon-time">
-                    </span> Posté par <strong>{{ new.author.username }}</strong> le {{ new.createdDate|date('d/m/Y, \\à H:i', 'Europe/Paris') }}</p>
+    <p class="pull-right hidden-xs">
+        <span class="glyphicon glyphicon-time"></span> Posté par <strong>{{ new.author.username }}</strong> le {{ new.createdDate|date('d/m/Y, \\à H:i', 'Europe/Paris') }}
+    </p>
+    <p class="pull-right visible-xs small">
+        <span class="glyphicon glyphicon-time"></span> Posté par <strong>{{ new.author.username }}</strong> le {{ new.createdDate|date('d/m/y', 'Europe/Paris') }}
+    </p>
 </div>

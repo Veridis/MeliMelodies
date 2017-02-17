@@ -20,11 +20,9 @@ html, body {
 }
 
 /*** HEADER/BANNER ***/
-#banner {
-    text-align: center;
-}
 #banner img {
-    height: 200px;
+    max-height: 200px;
+    margin: auto;
 }
 
 /*** BODY ***/
