@@ -39,7 +39,7 @@
     <hr />
     <div class="row">
         {% for member in members %}
-            <div class="col-md-3 ">
+            <div class="col-md-3 col-sm-6">
                 {% include 'admin/presentation/member_widget.html.twig' with { 'member' : member} %}
             </div>
         {% endfor %}
