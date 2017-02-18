@@ -48,12 +48,12 @@ class File
      *          "image/jpeg",
      *          "image/png",
      *          "application/pdf",
-     *      }
+     *      },
+     *      mimeTypesMessage="L'extension du fichier n'est pas reconnue. Fichiers autorisés : gif, jpeg, png, pdf"
      * ),
      * )
      */
     private $file;
-
 
     /**
      * Get id

@@ -1,14 +1,14 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block body %}
-    <h1>Ajouter une gallerie</h1>
+    <h1>Modifier la gallerie <em>{{ media.title }}</em></h1>
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
             {{ form_start(form) }}
             {{ form_row(form.title) }}
             {{ form_row(form.category) }}
             {{ form_row(form.active) }}
-            <input type="submit" value="Ajouter une gallerie" class="btn btn-primary btn-block pull-right" />
+            <input type="submit" value="Modifier la gallerie" class="btn btn-primary btn-block pull-right" />
             {{ form_end(form) }}
         </div>
     </div>

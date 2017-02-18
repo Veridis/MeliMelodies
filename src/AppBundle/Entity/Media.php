@@ -61,12 +61,27 @@ class Media
      */
     private $gallery;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="videos", type="text")
+     */
+    private $videos;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
+
     public function __construct()
     {
+        $this->active = false;
         $this->gallery = new ArrayCollection();
+        $this->videos = json_encode(array());
         $this->createdDate = new \DateTime('now');
     }
-
 
     /**
      * Get id
@@ -177,7 +192,6 @@ class Media
     {
         return array(
             self::CATEGORY_IMAGE => 'Images',
-            self::CATEGORY_AUDIO => 'Audio',
             self::CATEGORY_VIDEO => 'Video',
         );
     }
@@ -214,5 +228,71 @@ class Media
     public function getGallery()
     {
         return $this->gallery;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVideos()
+    {
+        return json_decode($this->videos, true);
+    }
+
+    /**
+     * @param string $code
+     * @param string $title
+     * @return $this
+     */
+    public function addVideo($code, $title)
+    {
+        $videos = $this->getVideos();
+        $videos[$code] = $title;
+        $this->setVideos($videos);
+
+        return $this;
+    }
+
+    /**
+     * @param array $videos
+     * @return Media
+     */
+    public function setVideos(array $videos)
+    {
+        $this->videos = json_encode($videos);
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     * @return Media
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLength()
+    {
+        if (Media::CATEGORY_IMAGE === $this->category) {
+            return $this->gallery->count();
+        } elseif (Media::CATEGORY_VIDEO === $this->category) {
+            return count($this->getVideos());
+        }
+
+        return 0;
     }
 }

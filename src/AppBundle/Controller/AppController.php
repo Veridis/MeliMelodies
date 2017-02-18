@@ -102,8 +102,11 @@ class AppController extends Controller
      */
     public function albumAction($category)
     {
+        $em = $this->getDoctrine()->getManager();
+        $galleries = $em->getRepository('AppBundle:Media')->findAllActives();
         return $this->render('app/app/album.html.twig', array(
             'category' => $category,
+            'galleries' => $galleries,
         ));
     }
 

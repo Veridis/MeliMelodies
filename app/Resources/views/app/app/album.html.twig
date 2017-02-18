@@ -1,5 +1,27 @@
 {% extends 'app/layout.html.twig' %}
 
 {% block body %}
- {{ category }}
+    {% for gallery in galleries %}
+        {% if gallery.category == category %}
+            <div class="row well">
+                <h3>{{ gallery.title }} <small>({{ gallery.getLength() }})</small></h3>
+                <hr />
+                {% include 'admin/media/widgetListTemplate.html.twig' with {'media' : gallery} %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('#image-preview').on('shown.bs.modal', function (e) {
+            var link = $(e.relatedTarget);
+            var id = link.data('id');
+            var path = link.data('href');
+            var name = link.text();
+            $(this).find('.modal-title').text(name);
+            $(this).find('.modal-body img').attr('src', path);
+        })
+    </script>
 {% endblock %}
