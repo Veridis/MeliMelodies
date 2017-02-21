@@ -66,7 +66,7 @@ class MemberController extends Controller
             $em = $this->getDoctrine()->getManager();
             $member = $form->getData();
             $file = new File();
-            $file->setFile($request->files->get('member')['photo']);
+            $file->setFile($request->files->get('appbundle_member')['photo']);
             $file->upload();
             $member->setPhoto($file);
             $em->persist($member);
