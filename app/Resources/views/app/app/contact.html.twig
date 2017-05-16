@@ -54,7 +54,7 @@
             });
             jQuery('#file-fields-list').on('click', '.removeColllection', function(e) {
                 e.preventDefault();
-                jQuery('#' + jQuery(this).data('remove')).remove();
+                jQuery('#' + jQuery(this).data('remove')).parent().remove();
                 //Do not fileCount--; to avoid conflicts
             });
         })
