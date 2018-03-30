@@ -95,6 +95,10 @@ textarea { resize:vertical; }
     float: none;
     vertical-align: top;
 }
+
+.navbar ul.navbar-nav {
+    font-size: 18px;
+}
 .navbar .navbar-collapse {
     /* Changing the navbar disposition to center */
     text-align: center;
@@ -109,7 +113,6 @@ textarea { resize:vertical; }
     width: 150px;
     height: 150px;
 }
-
 
 /*** SOCIALS ***/
 #social .social-fb {
@@ -208,7 +211,7 @@ textarea { resize:vertical; }
     min-height: 120px;
 }
 .quote-card p {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.5;
     margin: 0;
     max-width: 80%;

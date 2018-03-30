@@ -97,7 +97,7 @@ class AppController extends Controller
     /**
      * @return Response
      *
-     * @Route("/multimedia/{category}", name="multimedia", requirements={ "category": "image|audio|video"})
+     * @Route("/multimedia/{category}", name="multimedia", requirements={ "category": "photo|audio|video"})
      * @Method("GET")
      */
     public function albumAction($category)

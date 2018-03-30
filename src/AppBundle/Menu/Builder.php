@@ -24,11 +24,11 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Multimédia')
             ->setAttribute('dropdown', true)
             ->setAttribute('divider_prepend', true);
-        $menu['Multimédia']->addChild('Image', array(
+        $menu['Multimédia']->addChild('Photos', array(
             'route' => 'multimedia',
-            'routeParameters' => array('category' => 'image'),
+            'routeParameters' => array('category' => 'photo'),
         ));
-        $menu['Multimédia']->addChild('Vidéo', array(
+        $menu['Multimédia']->addChild('Vidéos', array(
             'route' => 'multimedia',
             'routeParameters' => array('category' => 'video'),
         ));
